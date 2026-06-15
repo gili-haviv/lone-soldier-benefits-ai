@@ -48,3 +48,4 @@ runs `netlify/functions/ai.js` as a serverless function.
 | `package.json` | Project metadata / dev dependency |
 # lone-soldier-benefits-ai
 # lone-soldier-benefits-ai
+# lone-soldier-benefits-ai
