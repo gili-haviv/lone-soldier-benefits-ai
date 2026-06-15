@@ -1,0 +1,11 @@
+{
+  "name": "lone-soldier-benefits-ai",
+  "version": "1.0.0",
+  "description": "AI-powered Mini MVP that tells lone soldiers which rights and grants they may be eligible for.",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}
