@@ -47,3 +47,4 @@ runs `netlify/functions/ai.js` as a serverless function.
 | `netlify.toml` | Netlify config |
 | `package.json` | Project metadata / dev dependency |
 # lone-soldier-benefits-ai
+# lone-soldier-benefits-ai
