@@ -212,7 +212,7 @@ chatForm.addEventListener("submit", async (e) => {
   } catch (err) {
     console.error(err);
     thinking.remove();
-    appendMsg("assistant", "Sorry, something went wrong. Please try again.");
+    appendMsg("assistant", "I'm having trouble connecting right now — please try again in a moment. For urgent support, call ERAN at 1201 (free, 24/7).");
   }
 });
 

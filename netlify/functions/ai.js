@@ -80,48 +80,64 @@ exports.handler = async (event) => {
 // ── helpers ──────────────────────────────────────────────────────────────────
 
 async function callOpenAI(messages, apiKey) {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + apiKey,
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      messages,
-      temperature: 0.4,
-      response_format: { type: "json_object" },
-    }),
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error("OpenAI HTTP " + res.status + ": " + text);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + apiKey,
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages,
+        temperature: 0.4,
+        max_tokens: 800,
+        response_format: { type: "json_object" },
+      }),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error("OpenAI HTTP " + res.status + ": " + text);
+    }
+    const data = await res.json();
+    const content = data.choices?.[0]?.message?.content;
+    if (!content) throw new Error("Empty response from OpenAI");
+    return JSON.parse(content);
+  } finally {
+    clearTimeout(timeout);
   }
-  const data = await res.json();
-  const content = data.choices?.[0]?.message?.content;
-  if (!content) throw new Error("Empty response from OpenAI");
-  return JSON.parse(content);
 }
 
 async function callOpenAIText(messages, apiKey) {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + apiKey,
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      messages,
-      temperature: 0.6,
-    }),
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error("OpenAI HTTP " + res.status + ": " + text);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + apiKey,
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages,
+        temperature: 0.6,
+        max_tokens: 600,
+      }),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error("OpenAI HTTP " + res.status + ": " + text);
+    }
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content || "";
+  } finally {
+    clearTimeout(timeout);
   }
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || "";
 }
 
 // ── mode: rights ─────────────────────────────────────────────────────────────
