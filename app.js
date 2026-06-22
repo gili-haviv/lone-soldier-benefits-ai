@@ -1,60 +1,72 @@
-// app.js — frontend logic: collect the profile, call the AI function, render results.
+// app.js — handles all three tabs: Rights & Grants, Mentor, Lease Shield.
 
-const form = document.getElementById("profile-form");
-const formScreen = document.getElementById("form-screen");
-const loading = document.getElementById("loading");
-const errorBox = document.getElementById("error");
-const errorText = document.getElementById("error-text");
+// ── shared helpers ──────────────────────────────────────────────────────────
+function show(el) { el.classList.remove("hidden"); }
+function hide(el) { el.classList.add("hidden"); }
+function getLang() { return document.getElementById("lang-select").value; }
+
+// ── tab switching ────────────────────────────────────────────────────────────
+document.querySelectorAll(".tab").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach((p) => hide(p));
+    btn.classList.add("active");
+    show(document.getElementById("tab-" + btn.dataset.tab));
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 1 — RIGHTS & GRANTS
+// ═══════════════════════════════════════════════════════════════════════════════
+const form         = document.getElementById("profile-form");
+const formScreen   = document.getElementById("form-screen");
+const loading      = document.getElementById("loading");
+const errorBox     = document.getElementById("error");
+const errorText    = document.getElementById("error-text");
 const resultsScreen = document.getElementById("results-screen");
-
-const sourceBadge = document.getElementById("source-badge");
+const sourceBadge  = document.getElementById("source-badge");
 const resultsSummary = document.getElementById("results-summary");
-const benefitsList = document.getElementById("benefits-list");
+const benefitsList  = document.getElementById("benefits-list");
 const documentsList = document.getElementById("documents-list");
-const nextStep = document.getElementById("next-step");
+const missingList   = document.getElementById("missing-list");
+const processText   = document.getElementById("process-text");
+const nextStep      = document.getElementById("next-step");
 
-// Human-readable labels so the AI gets clear text instead of raw codes.
 const LABELS = {
   loneStatus: {
     lone_from_israel: "Lone soldier from Israel (no supporting family in Israel)",
-    lone_immigrant: "Lone soldier who is a new immigrant (oleh chadash)",
-    not_sure: "Not sure if recognized as a lone soldier",
-    no: "Not a lone soldier",
+    lone_immigrant:   "Lone soldier who is a new immigrant (oleh chadash)",
+    not_sure:         "Not sure if recognized as a lone soldier",
+    no:               "Not a lone soldier",
   },
   serviceType: {
-    combat: "Combat role",
+    combat:         "Combat role",
     combat_support: "Combat support role",
-    non_combat: "Non-combat role",
+    non_combat:     "Non-combat role",
   },
   serviceLength: {
-    "0-6m": "Less than 6 months of service",
-    "6-12m": "6 to 12 months of service",
-    "12m+": "More than a year of service",
+    "0-6m":   "Less than 6 months of service",
+    "6-12m":  "6 to 12 months of service",
+    "12m+":   "More than a year of service",
     released: "Recently released from service",
   },
   housing: {
-    rent_alone: "Renting an apartment alone",
-    rent_shared: "Renting with roommates",
-    adoptive_family: "Living with an adoptive family",
-    dorm: "Living in army dorm / base housing",
-    other: "Other housing situation",
+    rent_alone:     "Renting an apartment alone",
+    rent_shared:    "Renting with roommates",
+    adoptive_family:"Living with an adoptive family",
+    dorm:           "Living in army dorm / base housing",
+    other:          "Other housing situation",
   },
 };
 
-function show(el) {
-  el.classList.remove("hidden");
-}
-function hide(el) {
-  el.classList.add("hidden");
-}
-
 function buildProfile(formData) {
   return {
-    loneStatus: LABELS.loneStatus[formData.get("loneStatus")] || "Unknown",
-    serviceType: LABELS.serviceType[formData.get("serviceType")] || "Unknown",
+    loneStatus:    LABELS.loneStatus[formData.get("loneStatus")]    || "Unknown",
+    serviceType:   LABELS.serviceType[formData.get("serviceType")]  || "Unknown",
     serviceLength: LABELS.serviceLength[formData.get("serviceLength")] || "Unknown",
-    housing: LABELS.housing[formData.get("housing")] || "Unknown",
-    notes: (formData.get("notes") || "").trim(),
+    housing:       LABELS.housing[formData.get("housing")]          || "Unknown",
+    unit:          (formData.get("unit")  || "").trim(),
+    notes:         (formData.get("notes") || "").trim(),
   };
 }
 
@@ -71,31 +83,24 @@ form.addEventListener("submit", async (e) => {
     const res = await fetch("/.netlify/functions/ai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profile }),
+      body: JSON.stringify({ mode: "rights", profile, lang: getLang() }),
     });
-
-    if (!res.ok) throw new Error("Server responded with status " + res.status);
-
+    if (!res.ok) throw new Error("Server error " + res.status);
     const data = await res.json();
-    renderResults(data);
+    renderRights(data);
     hide(loading);
     show(resultsScreen);
   } catch (err) {
     console.error(err);
     hide(loading);
-    errorText.textContent =
-      "Sorry, something went wrong while checking your benefits. Please try again.";
+    errorText.textContent = "Something went wrong. Please try again.";
     show(errorBox);
   }
 });
 
-function renderResults(data) {
-  // Source badge: was this a real AI answer or the offline fallback?
+function renderRights(data) {
   sourceBadge.className = "badge " + (data.source === "ai" ? "ai" : "fallback");
-  sourceBadge.textContent =
-    data.source === "ai"
-      ? "Generated by AI"
-      : "Offline estimate (AI unavailable)";
+  sourceBadge.textContent = data.source === "ai" ? "Generated by AI" : "Offline estimate";
   show(sourceBadge);
 
   resultsSummary.textContent = data.summary || "Here is what we found for you:";
@@ -103,14 +108,7 @@ function renderResults(data) {
   benefitsList.innerHTML = "";
   (data.benefits || []).forEach((b) => {
     const li = document.createElement("li");
-    const title = document.createElement("span");
-    title.className = "b-title";
-    title.textContent = b.name || "Benefit";
-    const why = document.createElement("span");
-    why.className = "b-why";
-    why.textContent = b.why || "";
-    li.appendChild(title);
-    li.appendChild(why);
+    li.innerHTML = `<span class="b-title">${b.name}</span><span class="b-why">${b.why}</span>`;
     benefitsList.appendChild(li);
   });
 
@@ -121,10 +119,22 @@ function renderResults(data) {
     documentsList.appendChild(li);
   });
 
+  missingList.innerHTML = "";
+  (data.missingDocuments || []).forEach((d) => {
+    const li = document.createElement("li");
+    li.textContent = d;
+    missingList.appendChild(li);
+  });
+  if ((data.missingDocuments || []).length === 0) {
+    const li = document.createElement("li");
+    li.textContent = "None identified.";
+    missingList.appendChild(li);
+  }
+
+  processText.textContent = data.process || "";
   nextStep.textContent = data.nextStep || "Contact your unit's welfare officer (mashakit tash).";
 }
 
-// reset / retry buttons
 document.getElementById("restart-btn").addEventListener("click", () => {
   hide(resultsScreen);
   show(formScreen);
@@ -132,4 +142,121 @@ document.getElementById("restart-btn").addEventListener("click", () => {
 document.getElementById("retry-btn").addEventListener("click", () => {
   hide(errorBox);
   show(formScreen);
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 2 — MENTOR (chat)
+// ═══════════════════════════════════════════════════════════════════════════════
+const chatMessages = document.getElementById("chat-messages");
+const chatForm     = document.getElementById("chat-form");
+const chatInput    = document.getElementById("chat-input");
+
+function appendMessage(role, text) {
+  const div = document.createElement("div");
+  div.className = "msg msg-" + role;
+  div.textContent = text;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const question = chatInput.value.trim();
+  if (!question) return;
+  chatInput.value = "";
+  appendMessage("user", question);
+
+  const thinking = document.createElement("div");
+  thinking.className = "msg msg-assistant thinking";
+  thinking.textContent = "...";
+  chatMessages.appendChild(thinking);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  try {
+    const res = await fetch("/.netlify/functions/ai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode: "mentor", question, lang: getLang() }),
+    });
+    if (!res.ok) throw new Error("Server error " + res.status);
+    const data = await res.json();
+    thinking.remove();
+    appendMessage("assistant", data.answer || "Sorry, I couldn't get an answer right now.");
+  } catch (err) {
+    console.error(err);
+    thinking.remove();
+    appendMessage("assistant", "Sorry, something went wrong. Please try again.");
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TAB 3 — LEASE SHIELD
+// ═══════════════════════════════════════════════════════════════════════════════
+const leaseForm        = document.getElementById("lease-form");
+const leaseText        = document.getElementById("lease-text");
+const leaseLoading     = document.getElementById("lease-loading");
+const leaseError       = document.getElementById("lease-error");
+const leaseErrorText   = document.getElementById("lease-error-text");
+const leaseResults     = document.getElementById("lease-results");
+const leaseSourceBadge = document.getElementById("lease-source-badge");
+const leaseSummary     = document.getElementById("lease-summary");
+const leaseClauses     = document.getElementById("lease-clauses");
+
+const RISK_ICONS = { red: "🔴", yellow: "🟡", green: "🟢" };
+
+leaseForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const text = leaseText.value.trim();
+  if (!text) return;
+
+  hide(leaseError);
+  hide(leaseResults);
+  show(leaseLoading);
+
+  try {
+    const res = await fetch("/.netlify/functions/ai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode: "lease", leaseText: text, lang: getLang() }),
+    });
+    if (!res.ok) throw new Error("Server error " + res.status);
+    const data = await res.json();
+    renderLease(data);
+    hide(leaseLoading);
+    show(leaseResults);
+  } catch (err) {
+    console.error(err);
+    hide(leaseLoading);
+    leaseErrorText.textContent = "Something went wrong. Please try again.";
+    show(leaseError);
+  }
+});
+
+function renderLease(data) {
+  leaseSourceBadge.className = "badge " + (data.source === "ai" ? "ai" : "fallback");
+  leaseSourceBadge.textContent = data.source === "ai" ? "Generated by AI" : "Offline estimate";
+  show(leaseSourceBadge);
+
+  leaseSummary.textContent = data.summary || "Here is the analysis of your contract:";
+
+  leaseClauses.innerHTML = "";
+  (data.clauses || []).forEach((c) => {
+    const div = document.createElement("div");
+    div.className = "clause clause-" + (c.risk || "green");
+    div.innerHTML =
+      `<div class="clause-header">${RISK_ICONS[c.risk] || "🟢"} <strong>${c.title}</strong></div>` +
+      `<p class="clause-issue">${c.issue}</p>` +
+      (c.suggestion ? `<p class="clause-suggestion">💡 ${c.suggestion}</p>` : "");
+    leaseClauses.appendChild(div);
+  });
+}
+
+document.getElementById("lease-restart-btn").addEventListener("click", () => {
+  hide(leaseResults);
+  leaseText.value = "";
+  show(document.querySelector("#tab-lease .card"));
+});
+document.getElementById("lease-retry-btn").addEventListener("click", () => {
+  hide(leaseError);
+  show(document.querySelector("#tab-lease .card"));
 });

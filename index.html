@@ -3,119 +3,176 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lone Soldier Benefits Assistant</title>
+    <title>Lone Soldier Platform</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="app">
       <header class="hero">
-        <h1>🪖 Lone Soldier Benefits Assistant</h1>
-        <p>
-          Answer a few quick questions and get a personalized list of the rights
-          and grants you are likely eligible for, which documents you need, and
-          your next step.
-        </p>
+        <h1>🪖 Lone Soldier Platform</h1>
+        <p>Three AI tools built for lone soldiers — in the language that works for you.</p>
+        <div class="lang-row">
+          <label for="lang-select">Language / שפה:</label>
+          <select id="lang-select">
+            <option value="English">English</option>
+            <option value="Hebrew">עברית</option>
+            <option value="Russian">Русский</option>
+            <option value="French">Français</option>
+            <option value="Spanish">Español</option>
+          </select>
+        </div>
       </header>
 
-      <!-- SCREEN 1: profile form -->
-      <section id="form-screen" class="card">
-        <form id="profile-form">
-          <label>
-            Are you recognized as a lone soldier (חייל בודד)?
-            <select name="loneStatus" required>
-              <option value="">Select...</option>
-              <option value="lone_from_israel">
-                Yes – lone soldier from Israel
-              </option>
-              <option value="lone_immigrant">
-                Yes – lone soldier / new immigrant (oleh)
-              </option>
-              <option value="not_sure">Not sure</option>
-              <option value="no">No</option>
-            </select>
-          </label>
+      <!-- TABS -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="rights" role="tab">✅ Rights &amp; Grants</button>
+        <button class="tab" data-tab="mentor" role="tab">💬 Mentor</button>
+        <button class="tab" data-tab="lease" role="tab">🏠 Lease Shield</button>
+      </div>
 
-          <label>
-            Service type
-            <select name="serviceType" required>
-              <option value="">Select...</option>
-              <option value="combat">Combat</option>
-              <option value="combat_support">Combat support</option>
-              <option value="non_combat">Non-combat</option>
-            </select>
-          </label>
+      <!-- ===== TAB 1: RIGHTS & GRANTS ===== -->
+      <div id="tab-rights" class="tab-panel">
+        <section id="form-screen" class="card">
+          <form id="profile-form">
+            <label>
+              Are you recognized as a lone soldier (חייל בודד)?
+              <select name="loneStatus" required>
+                <option value="">Select...</option>
+                <option value="lone_from_israel">Yes – lone soldier from Israel</option>
+                <option value="lone_immigrant">Yes – lone soldier / new immigrant (oleh)</option>
+                <option value="not_sure">Not sure</option>
+                <option value="no">No</option>
+              </select>
+            </label>
 
-          <label>
-            How long have you been serving?
-            <select name="serviceLength" required>
-              <option value="">Select...</option>
-              <option value="0-6m">Less than 6 months</option>
-              <option value="6-12m">6–12 months</option>
-              <option value="12m+">More than a year</option>
-              <option value="released">Recently released</option>
-            </select>
-          </label>
+            <label>
+              Service type
+              <select name="serviceType" required>
+                <option value="">Select...</option>
+                <option value="combat">Combat</option>
+                <option value="combat_support">Combat support</option>
+                <option value="non_combat">Non-combat</option>
+              </select>
+            </label>
 
-          <label>
-            Housing situation
-            <select name="housing" required>
-              <option value="">Select...</option>
-              <option value="rent_alone">Renting on my own</option>
-              <option value="rent_shared">Renting with roommates</option>
-              <option value="adoptive_family">
-                Living with an adoptive family
-              </option>
-              <option value="dorm">Army dorm / base housing</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
+            <label>
+              How long have you been serving?
+              <select name="serviceLength" required>
+                <option value="">Select...</option>
+                <option value="0-6m">Less than 6 months</option>
+                <option value="6-12m">6–12 months</option>
+                <option value="12m+">More than a year</option>
+                <option value="released">Recently released</option>
+              </select>
+            </label>
 
-          <label>
-            Anything else about your situation? (optional)
-            <textarea
-              name="notes"
-              rows="3"
-              placeholder="e.g. My rental contract ends next month and I haven't applied for the housing grant yet."
-            ></textarea>
-          </label>
+            <label>
+              Housing situation
+              <select name="housing" required>
+                <option value="">Select...</option>
+                <option value="rent_alone">Renting on my own</option>
+                <option value="rent_shared">Renting with roommates</option>
+                <option value="adoptive_family">Living with an adoptive family</option>
+                <option value="dorm">Army dorm / base housing</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
 
-          <button type="submit" id="submit-btn">Get my benefits →</button>
-        </form>
-      </section>
+            <label>
+              Unit / base (optional)
+              <input type="text" name="unit" placeholder="e.g. Golani, 8200, base in the south..." />
+            </label>
 
-      <!-- loading -->
-      <section id="loading" class="card hidden">
-        <div class="spinner"></div>
-        <p>Checking your eligibility with AI...</p>
-      </section>
+            <label>
+              Anything else about your situation? (optional)
+              <textarea name="notes" rows="3"
+                placeholder="e.g. My rental contract ends next month and I haven't applied for the housing grant yet."></textarea>
+            </label>
 
-      <!-- error -->
-      <section id="error" class="card error hidden">
-        <p id="error-text"></p>
-        <button id="retry-btn">Try again</button>
-      </section>
+            <button type="submit" id="submit-btn">Get my benefits →</button>
+          </form>
+        </section>
 
-      <!-- SCREEN 2: results -->
-      <section id="results-screen" class="card hidden">
-        <div id="source-badge" class="badge hidden"></div>
-        <h2 id="results-summary"></h2>
+        <section id="loading" class="card hidden">
+          <div class="spinner"></div>
+          <p>Checking your eligibility with AI...</p>
+        </section>
 
-        <h3>✅ Benefits you are likely eligible for</h3>
-        <ul id="benefits-list" class="benefits"></ul>
+        <section id="error" class="card error hidden">
+          <p id="error-text"></p>
+          <button id="retry-btn">Try again</button>
+        </section>
 
-        <h3>📄 Documents to prepare</h3>
-        <ul id="documents-list" class="documents"></ul>
+        <section id="results-screen" class="card hidden">
+          <div id="source-badge" class="badge hidden"></div>
+          <h2 id="results-summary"></h2>
 
-        <h3>👉 Your next step</h3>
-        <p id="next-step" class="next-step"></p>
+          <h3>✅ Benefits you are likely eligible for</h3>
+          <ul id="benefits-list" class="benefits"></ul>
 
-        <p class="disclaimer">
-          This is an automated estimate, not an official ruling. Always confirm
-          with the relevant authority before relying on it.
-        </p>
+          <h3>📄 Documents to prepare</h3>
+          <ul id="documents-list" class="documents"></ul>
 
-        <button id="restart-btn">Start over</button>
-      </section>
+          <h3>📋 Missing documents</h3>
+          <ul id="missing-list" class="documents"></ul>
+
+          <h3>📝 How the process works</h3>
+          <p id="process-text" class="process-text"></p>
+
+          <h3>👉 Your next step</h3>
+          <p id="next-step" class="next-step"></p>
+
+          <p class="disclaimer">This is an automated estimate, not an official ruling.
+            Always confirm with the relevant authority before relying on it.</p>
+
+          <button id="restart-btn">Start over</button>
+        </section>
+      </div>
+
+      <!-- ===== TAB 2: MENTOR ===== -->
+      <div id="tab-mentor" class="tab-panel hidden">
+        <section class="card chat-card">
+          <p class="chat-intro">Ask me anything about army life — slang, bureaucracy, or just how to cope. I'm here for you.</p>
+          <div id="chat-messages" class="chat-messages"></div>
+          <form id="chat-form" class="chat-form">
+            <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off" required />
+            <button type="submit">Send</button>
+          </form>
+        </section>
+      </div>
+
+      <!-- ===== TAB 3: LEASE SHIELD ===== -->
+      <div id="tab-lease" class="tab-panel hidden">
+        <section class="card">
+          <p class="lease-intro">Paste your rental contract text below. The AI will flag dangerous clauses and suggest safer wording.</p>
+          <form id="lease-form">
+            <label>
+              Rental contract text
+              <textarea id="lease-text" name="leaseText" rows="10"
+                placeholder="Paste the full text of your rental agreement here..."></textarea>
+            </label>
+            <button type="submit" id="lease-submit-btn">Analyze my contract →</button>
+          </form>
+        </section>
+
+        <section id="lease-loading" class="card hidden">
+          <div class="spinner"></div>
+          <p>Analyzing your contract with AI...</p>
+        </section>
+
+        <section id="lease-error" class="card error hidden">
+          <p id="lease-error-text"></p>
+          <button id="lease-retry-btn">Try again</button>
+        </section>
+
+        <section id="lease-results" class="card hidden">
+          <div id="lease-source-badge" class="badge hidden"></div>
+          <h2 id="lease-summary"></h2>
+          <div id="lease-clauses"></div>
+          <p class="disclaimer">This is an AI analysis for informational purposes only, not legal advice.</p>
+          <button id="lease-restart-btn">Analyze another contract</button>
+        </section>
+      </div>
     </main>
 
     <script src="app.js"></script>

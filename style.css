@@ -24,25 +24,72 @@ body {
 }
 
 .app {
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
 }
 
+/* ── hero ─────────────────────────────────────────────────────────────────── */
 .hero {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .hero h1 {
   font-size: 1.8rem;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hero p {
   color: var(--muted);
   font-size: 0.95rem;
+  margin-bottom: 12px;
 }
 
+.lang-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.lang-row select {
+  width: auto;
+  padding: 6px 10px;
+  border: 1px solid #d7d9e6;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  background: #fff;
+}
+
+/* ── tabs ─────────────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 8px;
+  background: #e8eaf6;
+  color: var(--muted);
+  border: none;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tab.active,
+.tab:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ── card ─────────────────────────────────────────────────────────────────── */
 .card {
   background: var(--card);
   border-radius: 16px;
@@ -59,7 +106,8 @@ label {
 }
 
 select,
-textarea {
+textarea,
+input[type="text"] {
   width: 100%;
   margin-top: 6px;
   padding: 10px 12px;
@@ -72,12 +120,17 @@ textarea {
 }
 
 select:focus,
-textarea:focus {
+textarea:focus,
+input:focus {
   outline: none;
   border-color: var(--primary);
 }
 
-button {
+button[type="submit"],
+button#restart-btn,
+button#retry-btn,
+button#lease-restart-btn,
+button#lease-retry-btn {
   width: 100%;
   padding: 13px;
   background: var(--primary);
@@ -90,15 +143,17 @@ button {
   transition: background 0.15s ease;
 }
 
-button:hover {
+button[type="submit"]:hover,
+button#restart-btn:hover,
+button#retry-btn:hover,
+button#lease-restart-btn:hover,
+button#lease-retry-btn:hover {
   background: var(--primary-dark);
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
 
-/* loading */
+/* ── loading ──────────────────────────────────────────────────────────────── */
 .spinner {
   width: 38px;
   height: 38px;
@@ -109,18 +164,14 @@ button:hover {
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-#loading {
+#loading, #lease-loading {
   text-align: center;
   color: var(--muted);
 }
 
-/* error */
+/* ── error ────────────────────────────────────────────────────────────────── */
 .card.error {
   border: 1px solid #f3c6c6;
   background: #fdf3f3;
@@ -132,7 +183,7 @@ button:hover {
   margin-bottom: 14px;
 }
 
-/* results */
+/* ── badge ────────────────────────────────────────────────────────────────── */
 .badge {
   display: inline-block;
   font-size: 0.72rem;
@@ -142,33 +193,23 @@ button:hover {
   margin-bottom: 12px;
 }
 
-.badge.ai {
-  background: #e7f5ec;
-  color: var(--success);
-}
+.badge.ai       { background: #e7f5ec; color: var(--success); }
+.badge.fallback { background: #fff4e0; color: #b5781a; }
 
-.badge.fallback {
-  background: #fff4e0;
-  color: #b5781a;
-}
-
-#results-summary {
-  font-size: 1.25rem;
+/* ── rights results ───────────────────────────────────────────────────────── */
+#results-summary, #lease-summary {
+  font-size: 1.2rem;
   margin-bottom: 18px;
 }
 
 #results-screen h3 {
   margin: 20px 0 8px;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
-.benefits,
-.documents {
-  list-style: none;
-}
+.benefits, .documents { list-style: none; }
 
-.benefits li,
-.documents li {
+.benefits li, .documents li {
   background: #f7f8fd;
   border-radius: 10px;
   padding: 12px 14px;
@@ -186,7 +227,12 @@ button:hover {
   color: var(--muted);
 }
 
-.documents li {
+.documents li { font-size: 0.92rem; }
+
+.process-text {
+  background: #f7f8fd;
+  border-radius: 10px;
+  padding: 12px 14px;
   font-size: 0.92rem;
 }
 
@@ -203,4 +249,106 @@ button:hover {
   color: var(--muted);
   margin: 18px 0;
   font-style: italic;
+}
+
+/* ── chat (mentor) ────────────────────────────────────────────────────────── */
+.chat-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.chat-messages {
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-right: 4px;
+}
+
+.msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.93rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.msg-user {
+  background: var(--primary);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.msg-assistant {
+  background: #f0f1fb;
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.msg.thinking { color: var(--muted); font-style: italic; }
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-form input {
+  flex: 1;
+  margin-top: 0;
+}
+
+.chat-form button {
+  width: auto;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.chat-form button:hover { background: var(--primary-dark); }
+
+/* ── lease shield ─────────────────────────────────────────────────────────── */
+.lease-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.clause {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-left: 5px solid;
+}
+
+.clause-red    { background: #fff2f2; border-color: #e53e3e; }
+.clause-yellow { background: #fffbea; border-color: #d69e2e; }
+.clause-green  { background: #f0fff4; border-color: #38a169; }
+
+.clause-header { font-size: 1rem; margin-bottom: 6px; }
+
+.clause-issue {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.clause-suggestion {
+  font-size: 0.88rem;
+  color: #2d6a4f;
+  background: #d8f3dc;
+  padding: 8px 10px;
+  border-radius: 8px;
 }
