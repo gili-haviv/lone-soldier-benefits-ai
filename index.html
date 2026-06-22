@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lone Soldier Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="app">
-      <header class="hero">
-        <h1>🪖 Lone Soldier Platform</h1>
-        <p>Three AI tools built for lone soldiers — in the language that works for you.</p>
-        <div class="lang-row">
-          <label for="lang-select">Language / שפה:</label>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">🪖 AI-Powered</div>
+        <h1>Lone Soldier Platform</h1>
+        <p>Three AI tools built for lone soldiers — know your rights, get support, protect your lease.</p>
+        <div class="lang-pill">
+          <span class="lang-icon">🌐</span>
           <select id="lang-select">
             <option value="English">English</option>
             <option value="Hebrew">עברית</option>
@@ -21,159 +27,271 @@
             <option value="Spanish">Español</option>
           </select>
         </div>
-      </header>
-
-      <!-- TABS -->
-      <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="rights" role="tab">✅ Rights &amp; Grants</button>
-        <button class="tab" data-tab="mentor" role="tab">💬 Mentor</button>
-        <button class="tab" data-tab="lease" role="tab">🏠 Lease Shield</button>
       </div>
+      <div class="hero-glow"></div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="tab-nav" role="tablist">
+      <div class="tab-track">
+        <button class="tab active" data-tab="rights" role="tab">
+          <span class="tab-icon">✅</span>
+          <span>Rights &amp; Grants</span>
+        </button>
+        <button class="tab" data-tab="mentor" role="tab">
+          <span class="tab-icon">💬</span>
+          <span>Mentor</span>
+        </button>
+        <button class="tab" data-tab="lease" role="tab">
+          <span class="tab-icon">🏠</span>
+          <span>Lease Shield</span>
+        </button>
+        <div class="tab-slider"></div>
+      </div>
+    </nav>
+
+    <main class="content">
 
       <!-- ===== TAB 1: RIGHTS & GRANTS ===== -->
-      <div id="tab-rights" class="tab-panel">
+      <div id="tab-rights" class="tab-panel animate-in">
+
         <section id="form-screen" class="card">
+          <div class="card-header">
+            <div class="card-header-icon">🎖️</div>
+            <div>
+              <h2 class="card-title">Check Your Eligibility</h2>
+              <p class="card-subtitle">Answer 4 quick questions — get your personalized benefits list in seconds.</p>
+            </div>
+          </div>
+
           <form id="profile-form">
-            <label>
-              Are you recognized as a lone soldier (חייל בודד)?
-              <select name="loneStatus" required>
-                <option value="">Select...</option>
-                <option value="lone_from_israel">Yes – lone soldier from Israel</option>
-                <option value="lone_immigrant">Yes – lone soldier / new immigrant (oleh)</option>
-                <option value="not_sure">Not sure</option>
-                <option value="no">No</option>
-              </select>
-            </label>
+            <div class="field-grid">
 
-            <label>
-              Service type
-              <select name="serviceType" required>
-                <option value="">Select...</option>
-                <option value="combat">Combat</option>
-                <option value="combat_support">Combat support</option>
-                <option value="non_combat">Non-combat</option>
-              </select>
-            </label>
+              <div class="field-group">
+                <label class="field-label" for="f-loneStatus">
+                  <span class="field-num">1</span> Lone soldier status
+                </label>
+                <div class="select-wrap">
+                  <select id="f-loneStatus" name="loneStatus" required>
+                    <option value="">Select your status…</option>
+                    <option value="lone_from_israel">Yes – lone soldier from Israel</option>
+                    <option value="lone_immigrant">Yes – lone soldier / new immigrant (oleh)</option>
+                    <option value="not_sure">Not sure</option>
+                    <option value="no">No</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
 
-            <label>
-              How long have you been serving?
-              <select name="serviceLength" required>
-                <option value="">Select...</option>
-                <option value="0-6m">Less than 6 months</option>
-                <option value="6-12m">6–12 months</option>
-                <option value="12m+">More than a year</option>
-                <option value="released">Recently released</option>
-              </select>
-            </label>
+              <div class="field-group">
+                <label class="field-label" for="f-serviceType">
+                  <span class="field-num">2</span> Service type
+                </label>
+                <div class="select-wrap">
+                  <select id="f-serviceType" name="serviceType" required>
+                    <option value="">Select service type…</option>
+                    <option value="combat">⚔️ Combat</option>
+                    <option value="combat_support">🛡️ Combat support</option>
+                    <option value="non_combat">🔧 Non-combat</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
 
-            <label>
-              Housing situation
-              <select name="housing" required>
-                <option value="">Select...</option>
-                <option value="rent_alone">Renting on my own</option>
-                <option value="rent_shared">Renting with roommates</option>
-                <option value="adoptive_family">Living with an adoptive family</option>
-                <option value="dorm">Army dorm / base housing</option>
-                <option value="other">Other</option>
-              </select>
-            </label>
+              <div class="field-group">
+                <label class="field-label" for="f-serviceLength">
+                  <span class="field-num">3</span> How long have you been serving?
+                </label>
+                <div class="select-wrap">
+                  <select id="f-serviceLength" name="serviceLength" required>
+                    <option value="">Select duration…</option>
+                    <option value="0-6m">Less than 6 months</option>
+                    <option value="6-12m">6–12 months</option>
+                    <option value="12m+">More than a year</option>
+                    <option value="released">Recently released</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
 
-            <label>
-              Unit / base (optional)
-              <input type="text" name="unit" placeholder="e.g. Golani, 8200, base in the south..." />
-            </label>
+              <div class="field-group">
+                <label class="field-label" for="f-housing">
+                  <span class="field-num">4</span> Housing situation
+                </label>
+                <div class="select-wrap">
+                  <select id="f-housing" name="housing" required>
+                    <option value="">Select housing…</option>
+                    <option value="rent_alone">🏠 Renting on my own</option>
+                    <option value="rent_shared">🤝 Renting with roommates</option>
+                    <option value="adoptive_family">👨‍👩‍👧 Living with adoptive family</option>
+                    <option value="dorm">🪖 Army dorm / base housing</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
 
-            <label>
-              Anything else about your situation? (optional)
-              <textarea name="notes" rows="3"
+            </div>
+
+            <div class="field-group mt-16">
+              <label class="field-label" for="f-unit">Unit / base <span class="optional-tag">optional</span></label>
+              <input id="f-unit" type="text" name="unit" placeholder="e.g. Golani, 8200, base in the south…" />
+            </div>
+
+            <div class="field-group mt-8">
+              <label class="field-label" for="f-notes">Anything else? <span class="optional-tag">optional</span></label>
+              <textarea id="f-notes" name="notes" rows="3"
                 placeholder="e.g. My rental contract ends next month and I haven't applied for the housing grant yet."></textarea>
-            </label>
+            </div>
 
-            <button type="submit" id="submit-btn">Get my benefits →</button>
+            <button type="submit" id="submit-btn" class="btn-primary">
+              <span>Check my benefits</span>
+              <span class="btn-arrow">→</span>
+            </button>
           </form>
         </section>
 
-        <section id="loading" class="card hidden">
+        <!-- loading -->
+        <section id="loading" class="card state-card hidden">
+          <div class="pulse-ring"></div>
           <div class="spinner"></div>
-          <p>Checking your eligibility with AI...</p>
+          <p class="state-title">Checking your eligibility…</p>
+          <p class="state-sub">The AI is reviewing your profile against known lone-soldier benefits.</p>
         </section>
 
-        <section id="error" class="card error hidden">
-          <p id="error-text"></p>
-          <button id="retry-btn">Try again</button>
+        <!-- error -->
+        <section id="error" class="card state-card error-card hidden">
+          <div class="error-icon">⚠️</div>
+          <p class="state-title" id="error-text"></p>
+          <button id="retry-btn" class="btn-outline">Try again</button>
         </section>
 
+        <!-- results -->
         <section id="results-screen" class="card hidden">
-          <div id="source-badge" class="badge hidden"></div>
-          <h2 id="results-summary"></h2>
+          <div class="results-header">
+            <div id="source-badge" class="badge hidden"></div>
+            <p id="results-summary" class="results-summary"></p>
+          </div>
 
-          <h3>✅ Benefits you are likely eligible for</h3>
-          <ul id="benefits-list" class="benefits"></ul>
+          <div class="section-block">
+            <h3 class="section-title"><span class="section-icon">✅</span> Benefits you likely qualify for</h3>
+            <ul id="benefits-list" class="benefits-list"></ul>
+          </div>
 
-          <h3>📄 Documents to prepare</h3>
-          <ul id="documents-list" class="documents"></ul>
+          <div class="docs-row">
+            <div class="docs-col">
+              <h3 class="section-title"><span class="section-icon">📄</span> Documents to prepare</h3>
+              <ul id="documents-list" class="doc-chips"></ul>
+            </div>
+            <div class="docs-col">
+              <h3 class="section-title"><span class="section-icon">❗</span> Missing documents</h3>
+              <ul id="missing-list" class="doc-chips missing"></ul>
+            </div>
+          </div>
 
-          <h3>📋 Missing documents</h3>
-          <ul id="missing-list" class="documents"></ul>
+          <div class="section-block">
+            <h3 class="section-title"><span class="section-icon">📝</span> How the process works</h3>
+            <p id="process-text" class="process-text"></p>
+          </div>
 
-          <h3>📝 How the process works</h3>
-          <p id="process-text" class="process-text"></p>
+          <div class="next-step-block">
+            <div class="next-step-label">👉 Your next step</div>
+            <p id="next-step"></p>
+          </div>
 
-          <h3>👉 Your next step</h3>
-          <p id="next-step" class="next-step"></p>
-
-          <p class="disclaimer">This is an automated estimate, not an official ruling.
-            Always confirm with the relevant authority before relying on it.</p>
-
-          <button id="restart-btn">Start over</button>
+          <p class="disclaimer">This is an automated estimate, not an official ruling. Always confirm with the relevant authority.</p>
+          <button id="restart-btn" class="btn-outline full-width">← Start over</button>
         </section>
+
       </div>
 
       <!-- ===== TAB 2: MENTOR ===== -->
       <div id="tab-mentor" class="tab-panel hidden">
         <section class="card chat-card">
-          <p class="chat-intro">Ask me anything about army life — slang, bureaucracy, or just how to cope. I'm here for you.</p>
-          <div id="chat-messages" class="chat-messages"></div>
+          <div class="card-header">
+            <div class="card-header-icon ai-avatar">🤖</div>
+            <div>
+              <h2 class="card-title">AI Mentor</h2>
+              <p class="card-subtitle">Ask about slang, bureaucracy, or anything on your mind. I'm here for you.</p>
+            </div>
+          </div>
+
+          <div id="chat-messages" class="chat-messages">
+            <div class="msg msg-assistant intro-msg">
+              <div class="msg-avatar">🤖</div>
+              <div class="msg-bubble">Hey! I'm your lone-soldier mentor. Ask me anything — army slang, rights, how to handle a tough week, or what to do next. What's on your mind?</div>
+            </div>
+          </div>
+
           <form id="chat-form" class="chat-form">
-            <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off" required />
-            <button type="submit">Send</button>
+            <input type="text" id="chat-input" placeholder="Type your question…" autocomplete="off" required />
+            <button type="submit" class="chat-send-btn" aria-label="Send">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
           </form>
         </section>
       </div>
 
       <!-- ===== TAB 3: LEASE SHIELD ===== -->
       <div id="tab-lease" class="tab-panel hidden">
-        <section class="card">
-          <p class="lease-intro">Paste your rental contract text below. The AI will flag dangerous clauses and suggest safer wording.</p>
+
+        <section id="lease-form-section" class="card">
+          <div class="card-header">
+            <div class="card-header-icon">📋</div>
+            <div>
+              <h2 class="card-title">Lease Shield</h2>
+              <p class="card-subtitle">Paste your rental contract — the AI will flag dangerous clauses and suggest safer wording.</p>
+            </div>
+          </div>
+
+          <div class="risk-legend">
+            <span class="risk-chip red">🔴 Dangerous</span>
+            <span class="risk-chip yellow">🟡 Risky</span>
+            <span class="risk-chip green">🟢 Standard</span>
+          </div>
+
           <form id="lease-form">
-            <label>
-              Rental contract text
+            <div class="field-group">
+              <label class="field-label" for="lease-text">Rental contract text</label>
               <textarea id="lease-text" name="leaseText" rows="10"
-                placeholder="Paste the full text of your rental agreement here..."></textarea>
-            </label>
-            <button type="submit" id="lease-submit-btn">Analyze my contract →</button>
+                placeholder="Paste the full text of your rental agreement here…"></textarea>
+            </div>
+            <button type="submit" id="lease-submit-btn" class="btn-primary">
+              <span>Analyze my contract</span>
+              <span class="btn-arrow">→</span>
+            </button>
           </form>
         </section>
 
-        <section id="lease-loading" class="card hidden">
+        <section id="lease-loading" class="card state-card hidden">
+          <div class="pulse-ring"></div>
           <div class="spinner"></div>
-          <p>Analyzing your contract with AI...</p>
+          <p class="state-title">Analyzing your contract…</p>
+          <p class="state-sub">The AI is reading each clause and assessing the risk level.</p>
         </section>
 
-        <section id="lease-error" class="card error hidden">
-          <p id="lease-error-text"></p>
-          <button id="lease-retry-btn">Try again</button>
+        <section id="lease-error" class="card state-card error-card hidden">
+          <div class="error-icon">⚠️</div>
+          <p class="state-title" id="lease-error-text"></p>
+          <button id="lease-retry-btn" class="btn-outline">Try again</button>
         </section>
 
         <section id="lease-results" class="card hidden">
-          <div id="lease-source-badge" class="badge hidden"></div>
-          <h2 id="lease-summary"></h2>
+          <div class="results-header">
+            <div id="lease-source-badge" class="badge hidden"></div>
+            <p id="lease-summary" class="results-summary"></p>
+          </div>
           <div id="lease-clauses"></div>
           <p class="disclaimer">This is an AI analysis for informational purposes only, not legal advice.</p>
-          <button id="lease-restart-btn">Analyze another contract</button>
+          <button id="lease-restart-btn" class="btn-outline full-width">← Analyze another contract</button>
         </section>
+
       </div>
     </main>
+
+    <footer class="site-footer">
+      Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025
+    </footer>
 
     <script src="app.js"></script>
   </body>
