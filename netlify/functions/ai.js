@@ -59,6 +59,21 @@ exports.handler = async (event) => {
     }
   }
 
+  if (mode === "debug") {
+    const keyFound = !!apiKey;
+    const keyPreview = keyFound ? apiKey.slice(0, 8) + "..." : "NOT SET";
+    if (!keyFound) return json(200, { keyFound, keyPreview, openaiStatus: "skipped — no key" });
+    try {
+      const res = await fetch("https://api.openai.com/v1/models", {
+        headers: { Authorization: "Bearer " + apiKey },
+      });
+      const text = await res.text();
+      return json(200, { keyFound, keyPreview, openaiStatus: res.status === 200 ? "OK" : "ERROR " + res.status, detail: res.status !== 200 ? text.slice(0, 300) : undefined });
+    } catch (err) {
+      return json(200, { keyFound, keyPreview, openaiStatus: "FETCH_FAILED", detail: err.message });
+    }
+  }
+
   return json(400, { error: "Unknown mode" });
 };
 
