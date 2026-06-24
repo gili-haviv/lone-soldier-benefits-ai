@@ -54,6 +54,15 @@ body {
 
 .hero-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
 
+.site-logo {
+  width: 260px;
+  max-width: 80vw;
+  height: auto;
+  margin: 0 auto 20px;
+  display: block;
+  filter: drop-shadow(0 4px 16px rgba(167, 139, 250, 0.3));
+}
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
