@@ -39,19 +39,19 @@
           <line x1="35" y1="60" x2="31" y2="79" stroke="white" stroke-width="8" stroke-linecap="round"/>
           <!-- Right leg -->
           <line x1="46" y1="60" x2="50" y2="79" stroke="white" stroke-width="8" stroke-linecap="round"/>
-          <!-- "Alya" text -->
+          <!-- "Alya" text (Intentionally left without data-i18n so it never translates) -->
           <text x="80" y="63" font-family="Inter, -apple-system, sans-serif" font-size="48" font-weight="500" fill="white" letter-spacing="-2">Alya</text>
         </svg>
 
-        <p>Three AI tools built for lone soldiers — know your rights, get support, protect your lease.</p>
+        <p data-i18n="hero_desc">Three AI tools built for lone soldiers — know your rights, get support, protect your lease.</p>
         <div class="lang-pill">
           <span class="lang-icon">🌐</span>
           <select id="lang-select">
-            <option value="English">English</option>
-            <option value="Hebrew">עברית</option>
-            <option value="Russian">Русский</option>
-            <option value="French">Français</option>
-            <option value="Spanish">Español</option>
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+            <option value="ru">Русский</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
           </select>
         </div>
       </div>
@@ -63,15 +63,15 @@
       <div class="tab-track">
         <button class="tab active" data-tab="rights" role="tab">
           <span class="tab-icon">✅</span>
-          <span>Rights &amp; Grants</span>
+          <span data-i18n="tab_rights">Rights &amp; Grants</span>
         </button>
         <button class="tab" data-tab="mentor" role="tab">
           <span class="tab-icon">💬</span>
-          <span>Mentor</span>
+          <span data-i18n="tab_mentor">Mentor</span>
         </button>
         <button class="tab" data-tab="lease" role="tab">
           <span class="tab-icon">🏠</span>
-          <span>Lease Shield</span>
+          <span data-i18n="tab_lease">Lease Shield</span>
         </button>
         <div class="tab-slider"></div>
       </div>
@@ -86,8 +86,8 @@
           <div class="card-header">
             <div class="card-header-icon">🎖️</div>
             <div>
-              <h2 class="card-title">Check Your Eligibility</h2>
-              <p class="card-subtitle">Answer 4 quick questions — get your personalized benefits list in seconds.</p>
+              <h2 class="card-title" data-i18n="rights_title">Check Your Eligibility</h2>
+              <p class="card-subtitle" data-i18n="rights_subtitle">Answer 4 quick questions — get your personalized benefits list in seconds.</p>
             </div>
           </div>
 
@@ -96,15 +96,15 @@
 
               <div class="field-group">
                 <label class="field-label" for="f-loneStatus">
-                  <span class="field-num">1</span> Lone soldier status
+                  <span class="field-num">1</span> <span data-i18n="q1_label">Lone soldier status</span>
                 </label>
                 <div class="select-wrap">
                   <select id="f-loneStatus" name="loneStatus" required>
-                    <option value="">Select your status…</option>
-                    <option value="lone_from_israel">Yes – lone soldier from Israel</option>
-                    <option value="lone_immigrant">Yes – lone soldier / new immigrant (oleh)</option>
-                    <option value="not_sure">Not sure</option>
-                    <option value="no">No</option>
+                    <option value="" data-i18n="q1_opt_default">Select your status…</option>
+                    <option value="lone_from_israel" data-i18n="q1_opt_1">Yes – lone soldier from Israel</option>
+                    <option value="lone_immigrant" data-i18n="q1_opt_2">Yes – lone soldier / new immigrant (oleh)</option>
+                    <option value="not_sure" data-i18n="q1_opt_3">Not sure</option>
+                    <option value="no" data-i18n="q1_opt_4">No</option>
                   </select>
                   <span class="select-arrow">▾</span>
                 </div>
@@ -112,14 +112,14 @@
 
               <div class="field-group">
                 <label class="field-label" for="f-serviceType">
-                  <span class="field-num">2</span> Service type
+                  <span class="field-num">2</span> <span data-i18n="q2_label">Service type</span>
                 </label>
                 <div class="select-wrap">
                   <select id="f-serviceType" name="serviceType" required>
-                    <option value="">Select service type…</option>
-                    <option value="combat">⚔️ Combat</option>
-                    <option value="combat_support">🛡️ Combat support</option>
-                    <option value="non_combat">🔧 Non-combat</option>
+                    <option value="" data-i18n="q2_opt_default">Select service type…</option>
+                    <option value="combat" data-i18n="q2_opt_1">⚔️ Combat</option>
+                    <option value="combat_support" data-i18n="q2_opt_2">🛡️ Combat support</option>
+                    <option value="non_combat" data-i18n="q2_opt_3">🔧 Non-combat</option>
                   </select>
                   <span class="select-arrow">▾</span>
                 </div>
@@ -127,15 +127,15 @@
 
               <div class="field-group">
                 <label class="field-label" for="f-serviceLength">
-                  <span class="field-num">3</span> How long have you been serving?
+                  <span class="field-num">3</span> <span data-i18n="q3_label">How long have you been serving?</span>
                 </label>
                 <div class="select-wrap">
                   <select id="f-serviceLength" name="serviceLength" required>
-                    <option value="">Select duration…</option>
-                    <option value="0-6m">Less than 6 months</option>
-                    <option value="6-12m">6–12 months</option>
-                    <option value="12m+">More than a year</option>
-                    <option value="released">Recently released</option>
+                    <option value="" data-i18n="q3_opt_default">Select duration…</option>
+                    <option value="0-6m" data-i18n="q3_opt_1">Less than 6 months</option>
+                    <option value="6-12m" data-i18n="q3_opt_2">6–12 months</option>
+                    <option value="12m+" data-i18n="q3_opt_3">More than a year</option>
+                    <option value="released" data-i18n="q3_opt_4">Recently released</option>
                   </select>
                   <span class="select-arrow">▾</span>
                 </div>
@@ -143,16 +143,16 @@
 
               <div class="field-group">
                 <label class="field-label" for="f-housing">
-                  <span class="field-num">4</span> Housing situation
+                  <span class="field-num">4</span> <span data-i18n="q4_label">Housing situation</span>
                 </label>
                 <div class="select-wrap">
                   <select id="f-housing" name="housing" required>
-                    <option value="">Select housing…</option>
-                    <option value="rent_alone">🏠 Renting on my own</option>
-                    <option value="rent_shared">🤝 Renting with roommates</option>
-                    <option value="adoptive_family">👨‍👩‍👧 Living with adoptive family</option>
-                    <option value="dorm">🪖 Army dorm / base housing</option>
-                    <option value="other">Other</option>
+                    <option value="" data-i18n="q4_opt_default">Select housing…</option>
+                    <option value="rent_alone" data-i18n="q4_opt_1">🏠 Renting on my own</option>
+                    <option value="rent_shared" data-i18n="q4_opt_2">🤝 Renting with roommates</option>
+                    <option value="adoptive_family" data-i18n="q4_opt_3">👨‍👩‍👧 Living with adoptive family</option>
+                    <option value="dorm" data-i18n="q4_opt_4">🪖 Army dorm / base housing</option>
+                    <option value="other" data-i18n="q4_opt_5">Other</option>
                   </select>
                   <span class="select-arrow">▾</span>
                 </div>
@@ -161,18 +161,21 @@
             </div>
 
             <div class="field-group mt-16">
-              <label class="field-label" for="f-unit">Unit / base <span class="optional-tag">optional</span></label>
-              <input id="f-unit" type="text" name="unit" placeholder="e.g. Golani, 8200, base in the south…" />
+              <label class="field-label" for="f-unit">
+                <span data-i18n="q5_label">Unit / base</span> <span class="optional-tag" data-i18n="optional">optional</span>
+              </label>
+              <input id="f-unit" type="text" name="unit" data-i18n="q5_placeholder" placeholder="e.g. Golani, 8200, base in the south…" />
             </div>
 
             <div class="field-group mt-8">
-              <label class="field-label" for="f-notes">Anything else? <span class="optional-tag">optional</span></label>
-              <textarea id="f-notes" name="notes" rows="3"
-                placeholder="e.g. My rental contract ends next month and I haven't applied for the housing grant yet."></textarea>
+              <label class="field-label" for="f-notes">
+                <span data-i18n="q6_label">Anything else?</span> <span class="optional-tag" data-i18n="optional">optional</span>
+              </label>
+              <textarea id="f-notes" name="notes" rows="3" data-i18n="q6_placeholder" placeholder="e.g. My rental contract ends next month and I haven't applied for the housing grant yet."></textarea>
             </div>
 
             <button type="submit" id="submit-btn" class="btn-primary">
-              <span>Check my benefits</span>
+              <span data-i18n="btn_check">Check my benefits</span>
               <span class="btn-arrow">→</span>
             </button>
           </form>
@@ -182,15 +185,15 @@
         <section id="loading" class="card state-card hidden">
           <div class="pulse-ring"></div>
           <div class="spinner"></div>
-          <p class="state-title">Checking your eligibility…</p>
-          <p class="state-sub">The AI is reviewing your profile against known lone-soldier benefits.</p>
+          <p class="state-title" data-i18n="loading_title">Checking your eligibility…</p>
+          <p class="state-sub" data-i18n="loading_sub">The AI is reviewing your profile against known lone-soldier benefits.</p>
         </section>
 
         <!-- error -->
         <section id="error" class="card state-card error-card hidden">
           <div class="error-icon">⚠️</div>
           <p class="state-title" id="error-text"></p>
-          <button id="retry-btn" class="btn-outline">Try again</button>
+          <button id="retry-btn" class="btn-outline" data-i18n="btn_retry">Try again</button>
         </section>
 
         <!-- results -->
@@ -201,33 +204,33 @@
           </div>
 
           <div class="section-block">
-            <h3 class="section-title"><span class="section-icon">✅</span> Benefits you likely qualify for</h3>
+            <h3 class="section-title"><span class="section-icon">✅</span> <span data-i18n="res_benefits">Benefits you likely qualify for</span></h3>
             <ul id="benefits-list" class="benefits-list"></ul>
           </div>
 
           <div class="docs-row">
             <div class="docs-col">
-              <h3 class="section-title"><span class="section-icon">📄</span> Documents to prepare</h3>
+              <h3 class="section-title"><span class="section-icon">📄</span> <span data-i18n="res_docs">Documents to prepare</span></h3>
               <ul id="documents-list" class="doc-chips"></ul>
             </div>
             <div class="docs-col">
-              <h3 class="section-title"><span class="section-icon">❗</span> Missing documents</h3>
+              <h3 class="section-title"><span class="section-icon">❗</span> <span data-i18n="res_missing">Missing documents</span></h3>
               <ul id="missing-list" class="doc-chips missing"></ul>
             </div>
           </div>
 
           <div class="section-block">
-            <h3 class="section-title"><span class="section-icon">📝</span> How the process works</h3>
+            <h3 class="section-title"><span class="section-icon">📝</span> <span data-i18n="res_process">How the process works</span></h3>
             <p id="process-text" class="process-text"></p>
           </div>
 
           <div class="next-step-block">
-            <div class="next-step-label">👉 Your next step</div>
+            <div class="next-step-label" data-i18n="res_next">👉 Your next step</div>
             <p id="next-step"></p>
           </div>
 
-          <p class="disclaimer">This is an automated estimate, not an official ruling. Always confirm with the relevant authority.</p>
-          <button id="restart-btn" class="btn-outline full-width">← Start over</button>
+          <p class="disclaimer" data-i18n="res_disclaimer">This is an automated estimate, not an official ruling. Always confirm with the relevant authority.</p>
+          <button id="restart-btn" class="btn-outline full-width" data-i18n="btn_restart">← Start over</button>
         </section>
 
       </div>
@@ -238,20 +241,20 @@
           <div class="card-header">
             <div class="card-header-icon ai-avatar">🤖</div>
             <div>
-              <h2 class="card-title">AI Mentor</h2>
-              <p class="card-subtitle">Ask about slang, bureaucracy, or anything on your mind. I'm here for you.</p>
+              <h2 class="card-title" data-i18n="mentor_title">AI Mentor</h2>
+              <p class="card-subtitle" data-i18n="mentor_sub">Ask about slang, bureaucracy, or anything on your mind. I'm here for you.</p>
             </div>
           </div>
 
           <div id="chat-messages" class="chat-messages">
             <div class="msg msg-assistant intro-msg">
               <div class="msg-avatar">🤖</div>
-              <div class="msg-bubble">Hey! I'm your lone-soldier mentor. Ask me anything — army slang, rights, how to handle a tough week, or what to do next. What's on your mind?</div>
+              <div class="msg-bubble" data-i18n="mentor_intro">Hey! I'm your lone-soldier mentor. Ask me anything — army slang, rights, how to handle a tough week, or what to do next. What's on your mind?</div>
             </div>
           </div>
 
           <form id="chat-form" class="chat-form">
-            <input type="text" id="chat-input" placeholder="Type your question…" autocomplete="off" required />
+            <input type="text" id="chat-input" data-i18n="mentor_placeholder" placeholder="Type your question…" autocomplete="off" required />
             <button type="submit" class="chat-send-btn" aria-label="Send">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
@@ -266,25 +269,24 @@
           <div class="card-header">
             <div class="card-header-icon">📋</div>
             <div>
-              <h2 class="card-title">Lease Shield</h2>
-              <p class="card-subtitle">Paste your rental contract — the AI will flag dangerous clauses and suggest safer wording.</p>
+              <h2 class="card-title" data-i18n="lease_title">Lease Shield</h2>
+              <p class="card-subtitle" data-i18n="lease_sub">Paste your rental contract — the AI will flag dangerous clauses and suggest safer wording.</p>
             </div>
           </div>
 
           <div class="risk-legend">
-            <span class="risk-chip red">🔴 Dangerous</span>
-            <span class="risk-chip yellow">🟡 Risky</span>
-            <span class="risk-chip green">🟢 Standard</span>
+            <span class="risk-chip red" data-i18n="risk_danger">🔴 Dangerous</span>
+            <span class="risk-chip yellow" data-i18n="risk_risky">🟡 Risky</span>
+            <span class="risk-chip green" data-i18n="risk_standard">🟢 Standard</span>
           </div>
 
           <form id="lease-form">
             <div class="field-group">
-              <label class="field-label" for="lease-text">Rental contract text</label>
-              <textarea id="lease-text" name="leaseText" rows="10"
-                placeholder="Paste the full text of your rental agreement here…"></textarea>
+              <label class="field-label" for="lease-text" data-i18n="lease_label">Rental contract text</label>
+              <textarea id="lease-text" name="leaseText" rows="10" data-i18n="lease_placeholder" placeholder="Paste the full text of your rental agreement here…"></textarea>
             </div>
             <button type="submit" id="lease-submit-btn" class="btn-primary">
-              <span>Analyze my contract</span>
+              <span data-i18n="btn_analyze">Analyze my contract</span>
               <span class="btn-arrow">→</span>
             </button>
           </form>
@@ -293,14 +295,14 @@
         <section id="lease-loading" class="card state-card hidden">
           <div class="pulse-ring"></div>
           <div class="spinner"></div>
-          <p class="state-title">Analyzing your contract…</p>
-          <p class="state-sub">The AI is reading each clause and assessing the risk level.</p>
+          <p class="state-title" data-i18n="lease_loading">Analyzing your contract…</p>
+          <p class="state-sub" data-i18n="lease_loading_sub">The AI is reading each clause and assessing the risk level.</p>
         </section>
 
         <section id="lease-error" class="card state-card error-card hidden">
           <div class="error-icon">⚠️</div>
           <p class="state-title" id="lease-error-text"></p>
-          <button id="lease-retry-btn" class="btn-outline">Try again</button>
+          <button id="lease-retry-btn" class="btn-outline" data-i18n="btn_retry">Try again</button>
         </section>
 
         <section id="lease-results" class="card hidden">
@@ -309,17 +311,377 @@
             <p id="lease-summary" class="results-summary"></p>
           </div>
           <div id="lease-clauses"></div>
-          <p class="disclaimer">This is an AI analysis for informational purposes only, not legal advice.</p>
-          <button id="lease-restart-btn" class="btn-outline full-width">← Analyze another contract</button>
+          <p class="disclaimer" data-i18n="lease_disclaimer">This is an AI analysis for informational purposes only, not legal advice.</p>
+          <button id="lease-restart-btn" class="btn-outline full-width" data-i18n="btn_lease_restart">← Analyze another contract</button>
         </section>
 
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-i18n="footer_text">
       Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025
     </footer>
 
+    <!-- Language Translation Logic -->
+    <script>
+      const translations = {
+        en: {
+          hero_desc: "Three AI tools built for lone soldiers — know your rights, get support, protect your lease.",
+          tab_rights: "Rights & Grants",
+          tab_mentor: "Mentor",
+          tab_lease: "Lease Shield",
+          rights_title: "Check Your Eligibility",
+          rights_subtitle: "Answer 4 quick questions — get your personalized benefits list in seconds.",
+          q1_label: "Lone soldier status",
+          q1_opt_default: "Select your status…",
+          q1_opt_1: "Yes – lone soldier from Israel",
+          q1_opt_2: "Yes – lone soldier / new immigrant (oleh)",
+          q1_opt_3: "Not sure",
+          q1_opt_4: "No",
+          q2_label: "Service type",
+          q2_opt_default: "Select service type…",
+          q2_opt_1: "⚔️ Combat",
+          q2_opt_2: "🛡️ Combat support",
+          q2_opt_3: "🔧 Non-combat",
+          q3_label: "How long have you been serving?",
+          q3_opt_default: "Select duration…",
+          q3_opt_1: "Less than 6 months",
+          q3_opt_2: "6–12 months",
+          q3_opt_3: "More than a year",
+          q3_opt_4: "Recently released",
+          q4_label: "Housing situation",
+          q4_opt_default: "Select housing…",
+          q4_opt_1: "🏠 Renting on my own",
+          q4_opt_2: "🤝 Renting with roommates",
+          q4_opt_3: "👨‍👩‍👧 Living with adoptive family",
+          q4_opt_4: "🪖 Army dorm / base housing",
+          q4_opt_5: "Other",
+          q5_label: "Unit / base",
+          optional: "optional",
+          q5_placeholder: "e.g. Golani, 8200, base in the south…",
+          q6_label: "Anything else?",
+          q6_placeholder: "e.g. My rental contract ends next month and I haven't applied for the housing grant yet.",
+          btn_check: "Check my benefits",
+          loading_title: "Checking your eligibility…",
+          loading_sub: "The AI is reviewing your profile against known lone-soldier benefits.",
+          btn_retry: "Try again",
+          res_benefits: "Benefits you likely qualify for",
+          res_docs: "Documents to prepare",
+          res_missing: "Missing documents",
+          res_process: "How the process works",
+          res_next: "👉 Your next step",
+          res_disclaimer: "This is an automated estimate, not an official ruling. Always confirm with the relevant authority.",
+          btn_restart: "← Start over",
+          mentor_title: "AI Mentor",
+          mentor_sub: "Ask about slang, bureaucracy, or anything on your mind. I'm here for you.",
+          mentor_intro: "Hey! I'm your lone-soldier mentor. Ask me anything — army slang, rights, how to handle a tough week, or what to do next. What's on your mind?",
+          mentor_placeholder: "Type your question…",
+          lease_title: "Lease Shield",
+          lease_sub: "Paste your rental contract — the AI will flag dangerous clauses and suggest safer wording.",
+          risk_danger: "🔴 Dangerous",
+          risk_risky: "🟡 Risky",
+          risk_standard: "🟢 Standard",
+          lease_label: "Rental contract text",
+          lease_placeholder: "Paste the full text of your rental agreement here…",
+          btn_analyze: "Analyze my contract",
+          lease_loading: "Analyzing your contract…",
+          lease_loading_sub: "The AI is reading each clause and assessing the risk level.",
+          lease_disclaimer: "This is an AI analysis for informational purposes only, not legal advice.",
+          btn_lease_restart: "← Analyze another contract",
+          footer_text: "Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025"
+        },
+        he: {
+          hero_desc: "שלושה כלי בינה מלאכותית לחיילים בודדים — דע את זכויותיך, קבל תמיכה, הגן על חוזה השכירות שלך.",
+          tab_rights: "זכויות ומענקים",
+          tab_mentor: "מנטור",
+          tab_lease: "הגנת חוזה שכירות",
+          rights_title: "בדוק את זכאותך",
+          rights_subtitle: "ענה על 4 שאלות קצרות — קבל את רשימת ההטבות המותאמת אישית שלך בשניות.",
+          q1_label: "סטטוס חייל בודד",
+          q1_opt_default: "בחר סטטוס…",
+          q1_opt_1: "כן – חייל בודד חסר עורף משפחתי",
+          q1_opt_2: "כן – חייל בודד / עולה חדש",
+          q1_opt_3: "לא בטוח",
+          q1_opt_4: "לא",
+          q2_label: "סוג שירות",
+          q2_opt_default: "בחר סוג שירות…",
+          q2_opt_1: "⚔️ קרבי",
+          q2_opt_2: "🛡️ תומך לחימה",
+          q2_opt_3: "🔧 עורפי",
+          q3_label: "כמה זמן אתה משרת?",
+          q3_opt_default: "בחר משך שירות…",
+          q3_opt_1: "פחות מ-6 חודשים",
+          q3_opt_2: "6-12 חודשים",
+          q3_opt_3: "מעל שנה",
+          q3_opt_4: "משוחרר טרי",
+          q4_label: "מצב מגורים",
+          q4_opt_default: "בחר סוג מגורים…",
+          q4_opt_1: "🏠 שוכר דירה לבד",
+          q4_opt_2: "🤝 שוכר דירה עם שותפים",
+          q4_opt_3: "👨‍👩‍👧 מתגורר עם משפחה מאמצת",
+          q4_opt_4: "🪖 בית החייל / מגורים בבסיס",
+          q4_opt_5: "אחר",
+          q5_label: "יחידה / בסיס",
+          optional: "אופציונלי",
+          q5_placeholder: "לדוגמה: גולני, 8200, בסיס בדרום…",
+          q6_label: "משהו נוסף?",
+          q6_placeholder: "לדוגמה: חוזה השכירות שלי מסתיים בחודש הבא ועוד לא הגשתי בקשה לסיוע בשכר דירה.",
+          btn_check: "בדוק את הזכויות שלי",
+          loading_title: "בודק זכאות…",
+          loading_sub: "הבינה המלאכותית סורקת את הפרופיל שלך מול זכויות החיילים הבודדים.",
+          btn_retry: "נסה שוב",
+          res_benefits: "הטבות שאתה כנראה זכאי להן",
+          res_docs: "מסמכים להכנה",
+          res_missing: "מסמכים חסרים",
+          res_process: "איך התהליך עובד",
+          res_next: "👉 הצעד הבא שלך",
+          res_disclaimer: "זוהי הערכה אוטומטית, לא החלטה רשמית. ודא תמיד מול הגורם הרלוונטי.",
+          btn_restart: "← התחל מחדש",
+          mentor_title: "מנטור אישי",
+          mentor_sub: "שאל על סלנג צבאי, בירוקרטיה, או כל דבר שעולה על דעתך. אני כאן בשבילך.",
+          mentor_intro: "היי! אני המנטור שלך. שאל אותי כל דבר — סלנג צבאי, זכויות, איך להתמודד עם שבוע קשה, או מה לעשות הלאה. מה על דעתך?",
+          mentor_placeholder: "הקלד את שאלתך…",
+          lease_title: "הגנת חוזה שכירות",
+          lease_sub: "הדבק את חוזה השכירות שלך — המערכת תסמן סעיפים מסוכנים ותציע ניסוח בטוח יותר.",
+          risk_danger: "🔴 מסוכן",
+          risk_risky: "🟡 בעייתי",
+          risk_standard: "🟢 סטנדרטי",
+          lease_label: "טקסט חוזה השכירות",
+          lease_placeholder: "הדבק את הטקסט המלא של חוזה השכירות שלך כאן…",
+          btn_analyze: "נתח את החוזה שלי",
+          lease_loading: "מנתח את החוזה שלך…",
+          lease_loading_sub: "הבינה המלאכותית קוראת כל סעיף ומעריכה את רמת הסיכון.",
+          lease_disclaimer: "ניתוח זה נועד למטרות מידע בלבד, ואינו מהווה ייעוץ משפטי.",
+          btn_lease_restart: "← נתח חוזה נוסף",
+          footer_text: "נבנה עבור חיילים בודדים &nbsp;·&nbsp; MVP מבוסס AI &nbsp;·&nbsp; 2025"
+        },
+        ru: {
+          hero_desc: "Три ИИ-инструмента для солдат-одиночек: узнайте свои права, получите поддержку, защитите договор аренды.",
+          tab_rights: "Права и льготы",
+          tab_mentor: "Наставник",
+          tab_lease: "Защита аренды",
+          rights_title: "Проверьте свои льготы",
+          rights_subtitle: "Ответьте на 4 быстрых вопроса и получите персональный список льгот за секунды.",
+          q1_label: "Статус солдата-одиночки",
+          q1_opt_default: "Выберите статус…",
+          q1_opt_1: "Да – солдат-одиночка из Израиля",
+          q1_opt_2: "Да – солдат-одиночка / новый репатриант (оле)",
+          q1_opt_3: "Не уверен",
+          q1_opt_4: "Нет",
+          q2_label: "Тип службы",
+          q2_opt_default: "Выберите тип службы…",
+          q2_opt_1: "⚔️ Боевые войска",
+          q2_opt_2: "🛡️ Поддержка боевых войск",
+          q2_opt_3: "🔧 Тыловые войска",
+          q3_label: "Как долго вы служите?",
+          q3_opt_default: "Выберите срок…",
+          q3_opt_1: "Менее 6 месяцев",
+          q3_opt_2: "6–12 месяцев",
+          q3_opt_3: "Больше года",
+          q3_opt_4: "Недавно демобилизован",
+          q4_label: "Условия проживания",
+          q4_opt_default: "Выберите условия…",
+          q4_opt_1: "🏠 Арендую один",
+          q4_opt_2: "🤝 Арендую с соседями",
+          q4_opt_3: "👨‍👩‍👧 Живу с приемной семьей",
+          q4_opt_4: "🪖 Армейское общежитие / база",
+          q4_opt_5: "Другое",
+          q5_label: "Подразделение / база",
+          optional: "необязательно",
+          q5_placeholder: "Напр. Голани, 8200, база на юге…",
+          q6_label: "Что-нибудь еще?",
+          q6_placeholder: "Напр. Мой договор аренды заканчивается в следующем месяце, и я еще не подал заявку на помощь в оплате жилья.",
+          btn_check: "Проверить льготы",
+          loading_title: "Проверка льгот…",
+          loading_sub: "ИИ проверяет ваш профиль по базе льгот для солдат-одиночек.",
+          btn_retry: "Попробовать снова",
+          res_benefits: "Льготы, на которые вы, вероятно, имеете право",
+          res_docs: "Документы для подготовки",
+          res_missing: "Недостающие документы",
+          res_process: "Как работает этот процесс",
+          res_next: "👉 Ваш следующий шаг",
+          res_disclaimer: "Это автоматическая оценка, а не официальное решение. Всегда проверяйте информацию в соответствующих инстанциях.",
+          btn_restart: "← Начать сначала",
+          mentor_title: "ИИ-наставник",
+          mentor_sub: "Спрашивайте о сленге, бюрократии или о чем угодно. Я здесь для вас.",
+          mentor_intro: "Привет! Я твой наставник для солдат-одиночек. Спрашивай о чем угодно: армейский сленг, права, как справиться с тяжелой неделей или что делать дальше. Что на уме?",
+          mentor_placeholder: "Введите ваш вопрос…",
+          lease_title: "Защита аренды",
+          lease_sub: "Вставьте ваш договор аренды — ИИ отметит опасные пункты и предложит более безопасные формулировки.",
+          risk_danger: "🔴 Опасно",
+          risk_risky: "🟡 Рискованно",
+          risk_standard: "🟢 Стандартно",
+          lease_label: "Текст договора аренды",
+          lease_placeholder: "Вставьте полный текст вашего договора аренды здесь…",
+          btn_analyze: "Проанализировать договор",
+          lease_loading: "Анализ договора…",
+          lease_loading_sub: "ИИ читает каждый пункт и оценивает уровень риска.",
+          lease_disclaimer: "Этот ИИ-анализ предоставляется только в информационных целях и не является юридической консультацией.",
+          btn_lease_restart: "← Проанализировать другой договор",
+          footer_text: "Создано для солдат-одиночек &nbsp;·&nbsp; ИИ-помощник MVP &nbsp;·&nbsp; 2025"
+        },
+        fr: {
+          hero_desc: "Trois outils d'IA pour les soldats seuls : connaissez vos droits, obtenez du soutien, protégez votre bail.",
+          tab_rights: "Droits & Aides",
+          tab_mentor: "Mentor",
+          tab_lease: "Bouclier Bail",
+          rights_title: "Vérifiez votre éligibilité",
+          rights_subtitle: "Répondez à 4 questions rapides — obtenez votre liste d'avantages personnalisée en quelques secondes.",
+          q1_label: "Statut de soldat seul",
+          q1_opt_default: "Sélectionnez votre statut…",
+          q1_opt_1: "Oui – soldat seul d'Israël",
+          q1_opt_2: "Oui – soldat seul / nouvel immigrant (oleh)",
+          q1_opt_3: "Pas sûr",
+          q1_opt_4: "Non",
+          q2_label: "Type de service",
+          q2_opt_default: "Sélectionnez le type de service…",
+          q2_opt_1: "⚔️ Combattant",
+          q2_opt_2: "🛡️ Soutien au combat",
+          q2_opt_3: "🔧 Non-combattant",
+          q3_label: "Depuis combien de temps servez-vous ?",
+          q3_opt_default: "Sélectionnez la durée…",
+          q3_opt_1: "Moins de 6 mois",
+          q3_opt_2: "6–12 mois",
+          q3_opt_3: "Plus d'un an",
+          q3_opt_4: "Récemment libéré",
+          q4_label: "Situation de logement",
+          q4_opt_default: "Sélectionnez le logement…",
+          q4_opt_1: "🏠 Je loue seul",
+          q4_opt_2: "🤝 Je loue avec des colocataires",
+          q4_opt_3: "👨‍👩‍👧 Je vis avec une famille adoptive",
+          q4_opt_4: "🪖 Dortoir de l'armée / logement sur base",
+          q4_opt_5: "Autre",
+          q5_label: "Unité / base",
+          optional: "facultatif",
+          q5_placeholder: "ex. Golani, 8200, base dans le sud…",
+          q6_label: "Autre chose ?",
+          q6_placeholder: "ex. Mon contrat de location se termine le mois prochain et je n'ai pas encore demandé l'aide au logement.",
+          btn_check: "Vérifier mes avantages",
+          loading_title: "Vérification de votre éligibilité…",
+          loading_sub: "L'IA examine votre profil par rapport aux avantages connus des soldats seuls.",
+          btn_retry: "Réessayer",
+          res_benefits: "Avantages auxquels vous êtes probablement éligible",
+          res_docs: "Documents à préparer",
+          res_missing: "Documents manquants",
+          res_process: "Comment fonctionne le processus",
+          res_next: "👉 Votre prochaine étape",
+          res_disclaimer: "Il s'agit d'une estimation automatisée, pas d'une décision officielle. Confirmez toujours avec l'autorité compétente.",
+          btn_restart: "← Recommencer",
+          mentor_title: "Mentor IA",
+          mentor_sub: "Posez des questions sur l'argot, la bureaucratie ou tout ce qui vous passe par la tête. Je suis là pour vous.",
+          mentor_intro: "Salut ! Je suis ton mentor pour soldat seul. Demande-moi n'importe quoi — argot militaire, droits, comment gérer une semaine difficile, ou quoi faire ensuite. Qu'est-ce qui te préoccupe ?",
+          mentor_placeholder: "Tapez votre question…",
+          lease_title: "Bouclier Bail",
+          lease_sub: "Collez votre contrat de location — l'IA signalera les clauses dangereuses et suggérera une formulation plus sûre.",
+          risk_danger: "🔴 Dangereux",
+          risk_risky: "🟡 Risqué",
+          risk_standard: "🟢 Standard",
+          lease_label: "Texte du contrat de location",
+          lease_placeholder: "Collez le texte complet de votre contrat de location ici…",
+          btn_analyze: "Analyser mon contrat",
+          lease_loading: "Analyse de votre contrat…",
+          lease_loading_sub: "L'IA lit chaque clause et évalue le niveau de risque.",
+          lease_disclaimer: "Ceci est une analyse par IA à des fins d'information uniquement, pas un avis juridique.",
+          btn_lease_restart: "← Analyser un autre contrat",
+          footer_text: "Conçu pour les soldats seuls &nbsp;·&nbsp; Mini MVP propulsé par l'IA &nbsp;·&nbsp; 2025"
+        },
+        es: {
+          hero_desc: "Tres herramientas de IA para soldados solitarios: conoce tus derechos, obtén apoyo, protege tu contrato de alquiler.",
+          tab_rights: "Derechos y Ayudas",
+          tab_mentor: "Mentor",
+          tab_lease: "Escudo de Alquiler",
+          rights_title: "Verifica tu elegibilidad",
+          rights_subtitle: "Responde 4 preguntas rápidas y obtén tu lista personalizada de beneficios en segundos.",
+          q1_label: "Estado de soldado solitario",
+          q1_opt_default: "Selecciona tu estado…",
+          q1_opt_1: "Sí – soldado solitario de Israel",
+          q1_opt_2: "Sí – soldado solitario / nuevo inmigrante (oleh)",
+          q1_opt_3: "No estoy seguro",
+          q1_opt_4: "No",
+          q2_label: "Tipo de servicio",
+          q2_opt_default: "Selecciona el tipo de servicio…",
+          q2_opt_1: "⚔️ Combate",
+          q2_opt_2: "🛡️ Apoyo de combate",
+          q2_opt_3: "🔧 No combate",
+          q3_label: "¿Cuánto tiempo llevas sirviendo?",
+          q3_opt_default: "Selecciona la duración…",
+          q3_opt_1: "Menos de 6 meses",
+          q3_opt_2: "6–12 meses",
+          q3_opt_3: "Más de un año",
+          q3_opt_4: "Recientemente liberado",
+          q4_label: "Situación de vivienda",
+          q4_opt_default: "Selecciona tu vivienda…",
+          q4_opt_1: "🏠 Alquilo solo",
+          q4_opt_2: "🤝 Alquilo con compañeros",
+          q4_opt_3: "👨‍👩‍👧 Vivo con familia adoptiva",
+          q4_opt_4: "🪖 Dormitorio del ejército / base",
+          q4_opt_5: "Otro",
+          q5_label: "Unidad / base",
+          optional: "opcional",
+          q5_placeholder: "ej. Golani, 8200, base en el sur…",
+          q6_label: "¿Algo más?",
+          q6_placeholder: "ej. Mi contrato de alquiler termina el próximo mes y aún no he solicitado la ayuda de vivienda.",
+          btn_check: "Comprobar mis beneficios",
+          loading_title: "Comprobando tu elegibilidad…",
+          loading_sub: "La IA está revisando tu perfil frente a los beneficios conocidos para soldados solitarios.",
+          btn_retry: "Intentar de nuevo",
+          res_benefits: "Beneficios a los que probablemente calificas",
+          res_docs: "Documentos para preparar",
+          res_missing: "Documentos faltantes",
+          res_process: "Cómo funciona el proceso",
+          res_next: "👉 Tu próximo paso",
+          res_disclaimer: "Esta es una estimación automatizada, no un fallo oficial. Siempre confirma con la autoridad pertinente.",
+          btn_restart: "← Empezar de nuevo",
+          mentor_title: "Mentor de IA",
+          mentor_sub: "Pregunta sobre jerga, burocracia o lo que tengas en mente. Estoy aquí para ti.",
+          mentor_intro: "¡Hola! Soy tu mentor de soldado solitario. Pregúntame cualquier cosa: jerga del ejército, derechos, cómo manejar una semana difícil o qué hacer a continuación. ¿Qué tienes en mente?",
+          mentor_placeholder: "Escribe tu pregunta…",
+          lease_title: "Escudo de Alquiler",
+          lease_sub: "Pega tu contrato de alquiler: la IA señalará las cláusulas peligrosas y sugerirá una redacción más segura.",
+          risk_danger: "🔴 Peligroso",
+          risk_risky: "🟡 Riesgoso",
+          risk_standard: "🟢 Estándar",
+          lease_label: "Texto del contrato de alquiler",
+          lease_placeholder: "Pega el texto completo de tu contrato de alquiler aquí…",
+          btn_analyze: "Analizar mi contrato",
+          lease_loading: "Analizando tu contrato…",
+          lease_loading_sub: "La IA está leyendo cada cláusula y evaluando el nivel de riesgo.",
+          lease_disclaimer: "Este es un análisis de IA solo con fines informativos, no es asesoramiento legal.",
+          btn_lease_restart: "← Analizar otro contrato",
+          footer_text: "Creado para soldados solitarios &nbsp;·&nbsp; Mini MVP impulsado por IA &nbsp;·&nbsp; 2025"
+        }
+      };
+
+      function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = (lang === 'he') ? 'rtl' : 'ltr';
+
+        const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+        
+        elementsToTranslate.forEach(element => {
+          const key = element.getAttribute('data-i18n');
+          
+          if (translations[lang] && translations[lang][key]) {
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+              element.placeholder = translations[lang][key];
+            } else {
+              element.innerHTML = translations[lang][key]; 
+            }
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const langSelect = document.getElementById('lang-select');
+        if (langSelect) {
+          langSelect.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+          });
+        }
+      });
+    </script>
+    
+    <!-- Your existing scripts -->
     <script src="app.js"></script>
   </body>
 </html>
