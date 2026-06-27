@@ -2,7 +2,11 @@
 
 function show(el) { el.classList.remove("hidden"); el.style.display = ""; }
 function hide(el) { el.classList.add("hidden"); }
-function getLang() { return document.getElementById("lang-select").value; }
+const LANG_NAMES = { en: "English", he: "Hebrew", ru: "Russian", fr: "French", es: "Spanish" };
+function getLang() {
+  const code = document.getElementById("lang-select").value;
+  return LANG_NAMES[code] || "English";
+}
 
 // ── tab switching ─────────────────────────────────────────────────────────────
 document.querySelectorAll(".tab").forEach((btn) => {

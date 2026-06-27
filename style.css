@@ -55,12 +55,12 @@ body {
 .hero-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
 
 .site-logo {
-  width: 260px;
-  max-width: 80vw;
+  width: 210px;
+  max-width: 72vw;
   height: auto;
-  margin: 0 auto 20px;
+  margin: 0 auto 24px;
   display: block;
-  filter: drop-shadow(0 4px 16px rgba(167, 139, 250, 0.3));
+  filter: drop-shadow(0 6px 20px rgba(91, 94, 244, 0.45));
 }
 
 .hero-badge {
