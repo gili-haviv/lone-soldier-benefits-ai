@@ -9,6 +9,14 @@ function getLang() {
 }
 
 // ── tab switching ─────────────────────────────────────────────────────────────
+function switchToTab(name) {
+  const btn = document.querySelector(`.tab[data-tab="${name}"]`);
+  if (btn) {
+    btn.click();
+    document.querySelector(".tab-nav").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 document.querySelectorAll(".tab").forEach((btn) => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
@@ -167,18 +175,20 @@ const chatMessages = document.getElementById("chat-messages");
 const chatForm     = document.getElementById("chat-form");
 const chatInput    = document.getElementById("chat-input");
 
+const AVATAR_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+
+const chatHistory = [];
+
 function appendMsg(role, content) {
   const wrap = document.createElement("div");
   wrap.className = "msg msg-" + role;
-
   if (role === "assistant") {
     wrap.innerHTML =
-      `<div class="msg-avatar">🤖</div>` +
+      `<div class="msg-avatar">${AVATAR_SVG}</div>` +
       `<div class="msg-bubble">${content}</div>`;
   } else {
     wrap.innerHTML = `<div class="msg-bubble">${content}</div>`;
   }
-
   chatMessages.appendChild(wrap);
   chatMessages.scrollTop = chatMessages.scrollHeight;
   return wrap;
@@ -188,7 +198,7 @@ function appendTyping() {
   const wrap = document.createElement("div");
   wrap.className = "msg msg-assistant thinking";
   wrap.innerHTML =
-    `<div class="msg-avatar">🤖</div>` +
+    `<div class="msg-avatar">${AVATAR_SVG}</div>` +
     `<div class="msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>`;
   chatMessages.appendChild(wrap);
   chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -200,6 +210,8 @@ chatForm.addEventListener("submit", async (e) => {
   const question = chatInput.value.trim();
   if (!question) return;
   chatInput.value = "";
+
+  chatHistory.push({ role: "user", content: question });
   appendMsg("user", question);
   const thinking = appendTyping();
 
@@ -207,13 +219,16 @@ chatForm.addEventListener("submit", async (e) => {
     const res = await fetch("/.netlify/functions/ai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: "mentor", question, lang: getLang() }),
+      body: JSON.stringify({ mode: "mentor", history: chatHistory, lang: getLang() }),
     });
     if (!res.ok) throw new Error("Server error " + res.status);
     const data = await res.json();
     thinking.remove();
-    appendMsg("assistant", data.answer || "Sorry, I couldn't get an answer right now.");
+    const answer = data.answer || "Sorry, I couldn't get an answer right now.";
+    chatHistory.push({ role: "assistant", content: answer });
+    appendMsg("assistant", answer);
   } catch (err) {
+    chatHistory.pop();
     console.error(err);
     thinking.remove();
     appendMsg("assistant", "I'm having trouble connecting right now — please try again in a moment. For urgent support, call ERAN at 1201 (free, 24/7).");

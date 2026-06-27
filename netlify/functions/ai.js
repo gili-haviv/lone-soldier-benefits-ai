@@ -34,15 +34,18 @@ exports.handler = async (event) => {
   }
 
   if (mode === "mentor") {
-    const { question } = body;
-    if (!question) return json(400, { error: "Missing question" });
-    if (!apiKey) return json(200, { answer: fallbackMentor(question), source: "fallback" });
+    const { question, history } = body;
+    const msgs = Array.isArray(history) && history.length > 0
+      ? history
+      : question ? [{ role: "user", content: question }] : null;
+    if (!msgs) return json(400, { error: "Missing question" });
+    if (!apiKey) return json(200, { answer: fallbackMentor(), source: "fallback" });
     try {
-      const answer = await mentorAI(question, lang, apiKey);
+      const answer = await mentorAI(msgs, lang, apiKey);
       return json(200, { answer, source: "ai" });
     } catch (err) {
       console.error("OpenAI mentor error:", err.message);
-      return json(200, { answer: fallbackMentor(question), source: "fallback" });
+      return json(200, { answer: fallbackMentor(), source: "fallback" });
     }
   }
 
@@ -217,7 +220,7 @@ function fallbackRights(profile) {
 
 // ── mode: mentor ─────────────────────────────────────────────────────────────
 
-async function mentorAI(question, lang, apiKey) {
+async function mentorAI(history, lang, apiKey) {
   const system =
     `You are a focused AI mentor for lone soldiers (חיילים בודדים) in the Israeli military. ` +
     `Respond entirely in ${lang}. ` +
@@ -246,11 +249,11 @@ async function mentorAI(question, lang, apiKey) {
 
   return await callOpenAIText([
     { role: "system", content: system },
-    { role: "user", content: question },
+    ...history.slice(-12),
   ], apiKey);
 }
 
-function fallbackMentor(question) {
+function fallbackMentor() {
   return (
     "I'm currently unable to reach the AI. For immediate support call ERAN at 1201 (free, 24/7). " +
     "For army slang and benefits questions, try again in a moment."
