@@ -7,20 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=2" />
   </head>
   <body>
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="hero-inner">
-        <img class="site-logo" src="purplelogo.png" alt="Alya">
-        <h1 class="hero-title">Empowering Lone Soldiers with AI</h1>
-        <p data-i18n="hero_desc">Three AI tools built for lone soldiers — know your rights, get support, protect your lease.</p>
-        <div class="lang-pill">
-          <span class="lang-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </span>
+    <!-- STICKY NAV -->
+    <nav class="site-nav">
+      <div class="site-nav-inner">
+        <a class="site-nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+          <img src="purplelogo.png" alt="Alya" id="nav-logo-img">
+          Alya
+        </a>
+        <div class="site-nav-links">
+          <button class="site-nav-link" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</button>
+          <button class="site-nav-link" onclick="switchToTab('rights')">Rights &amp; Grants</button>
+          <button class="site-nav-link" onclick="switchToTab('mentor')">AI Mentor</button>
+          <button class="site-nav-link" onclick="switchToTab('lease')">Lease Shield</button>
+          <button class="site-nav-link" onclick="openModal('modal-feedback')">Feedback</button>
+        </div>
+        <div class="nav-lang-wrap">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           <select id="lang-select">
             <option value="en">English</option>
             <option value="he">עברית</option>
@@ -30,11 +36,65 @@
           </select>
         </div>
       </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="hero">
+      <div class="hero-inner">
+        <img class="site-logo" src="purplelogo.png" alt="Alya">
+        <h1 class="hero-title">Empowering Lone Soldiers with AI</h1>
+        <p data-i18n="hero_desc">Three AI tools built for lone soldiers — know your rights, get support, protect your lease.</p>
+      </div>
       <div class="hero-glow"></div>
     </header>
 
+    <!-- ABOUT SECTION -->
+    <section class="about-inline" id="about">
+      <div class="about-inline-inner">
+        <span class="section-eyebrow">Why Alya Exists</span>
+        <h2>The system wasn't built for soldiers without a support network</h2>
+        <p class="about-lead">Every year, thousands of young Jews make aliyah and enlist in the IDF without parents or family nearby. They face a language barrier, unfamiliar bureaucracy, and an emotional isolation that no Facebook group fully fixes — Alya is the guide they deserve.</p>
+
+        <div class="about-stats-row">
+          <div class="about-stat-card">
+            <span class="about-stat-num">7,000+</span>
+            <span class="about-stat-label">Lone soldiers in the IDF today</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="about-stat-num">5</span>
+            <span class="about-stat-label">Languages supported</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="about-stat-num">3</span>
+            <span class="about-stat-label">AI tools in one place</span>
+          </div>
+        </div>
+
+        <div class="about-pain-grid">
+          <div class="about-pain-item">Language barrier — military paperwork is in Hebrew</div>
+          <div class="about-pain-item">Fragmented info — benefits spread across Facebook &amp; offices</div>
+          <div class="about-pain-item">No family guidance — most soldiers have a parent to call</div>
+          <div class="about-pain-item">Housing risk — rental contracts with predatory clauses</div>
+        </div>
+
+        <div class="about-persona-mini">
+          <div class="persona-mini-avatar">JL</div>
+          <div>
+            <div class="persona-mini-name">Meet Julia Levi, 18 — our primary user persona</div>
+            <div class="persona-mini-meta">Lone soldier · New immigrant (olah chadasha) · California → Israel</div>
+            <blockquote class="persona-mini-quote">"Can you explain what you meant? I don't speak the language well yet."</blockquote>
+          </div>
+        </div>
+
+        <div class="about-built-by">
+          Built by <strong>Gili Haviv, Shaked Harari, Tal Cohen, Yonatan Rahamim &amp; Matan Slasky</strong><br>
+          Bar-Ilan University · Product Management &amp; Entrepreneurship in the AI Era · Dr. Neta Granot · 2025
+        </div>
+      </div>
+    </section>
+
     <!-- FEATURES STRIP -->
-    <section class="features-strip">
+    <section class="features-strip" id="features">
       <p class="features-label">Three AI tools in one place</p>
       <div class="features-row">
         <div class="feature-card" onclick="switchToTab('rights')">
@@ -441,16 +501,10 @@
       </div>
     </div>
 
-    <!-- FLOATING FEEDBACK BUTTON -->
-    <button class="fab" onclick="openModal('modal-feedback')">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Feedback
-    </button>
-
     <footer class="site-footer">
       <div data-i18n="footer_text">Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025</div>
       <div class="footer-links">
-        <a href="about.html">About</a>
+        <a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'}); return false;">About</a>
         <a href="#" onclick="openModal('modal-privacy'); return false;">Privacy Policy</a>
         <a href="#" onclick="openModal('modal-feedback'); return false;">Feedback</a>
       </div>
@@ -879,26 +933,29 @@
 
     <script>
       (function () {
-        const img = document.querySelector('.site-logo');
-        if (!img) return;
-        function removeBg() {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
-          const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const px = data.data;
-          const bgR = px[0], bgG = px[1], bgB = px[2];
-          const tolerance = 60;
-          for (let i = 0; i < px.length; i += 4) {
-            if (Math.abs(px[i]-bgR) + Math.abs(px[i+1]-bgG) + Math.abs(px[i+2]-bgB) < tolerance * 3) px[i+3] = 0;
+        function removeBg(img) {
+          if (!img) return;
+          function run() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const px = data.data;
+            const bgR = px[0], bgG = px[1], bgB = px[2];
+            const tolerance = 60;
+            for (let i = 0; i < px.length; i += 4) {
+              if (Math.abs(px[i]-bgR) + Math.abs(px[i+1]-bgG) + Math.abs(px[i+2]-bgB) < tolerance * 3) px[i+3] = 0;
+            }
+            ctx.putImageData(data, 0, 0);
+            img.src = canvas.toDataURL('image/png');
           }
-          ctx.putImageData(data, 0, 0);
-          img.src = canvas.toDataURL('image/png');
+          if (img.complete && img.naturalWidth) run();
+          else img.addEventListener('load', run);
         }
-        if (img.complete && img.naturalWidth) removeBg();
-        else img.addEventListener('load', removeBg);
+        removeBg(document.querySelector('.site-logo'));
+        removeBg(document.getElementById('nav-logo-img'));
       })();
     </script>
   </body>

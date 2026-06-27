@@ -13,7 +13,10 @@ function switchToTab(name) {
   const btn = document.querySelector(`.tab[data-tab="${name}"]`);
   if (btn) {
     btn.click();
-    document.querySelector(".tab-nav").scrollIntoView({ behavior: "smooth", block: "start" });
+    const tabNav = document.querySelector(".tab-nav");
+    const navH = document.querySelector(".site-nav")?.offsetHeight || 0;
+    const top = tabNav.getBoundingClientRect().top + window.scrollY - navH - 2;
+    window.scrollTo({ top, behavior: "smooth" });
   }
 }
 
