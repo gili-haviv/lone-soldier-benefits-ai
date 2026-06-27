@@ -68,6 +68,7 @@ const LABELS = {
     "6-12m":  "6 to 12 months of service",
     "12m+":   "More than a year of service",
     released: "Recently released from service",
+    "pre-enlistment": "Pre-enlistment (Malshabit — not yet enlisted, about to join the IDF)",
   },
   housing: {
     rent_alone:      "Renting an apartment alone",
