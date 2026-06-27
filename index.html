@@ -272,7 +272,15 @@
 
           <form id="lease-form">
             <div class="field-group">
-              <label class="field-label" for="lease-text" data-i18n="lease_label">Rental contract text</label>
+              <div class="lease-input-header">
+                <label class="field-label" for="lease-text" data-i18n="lease_label">Rental contract text</label>
+                <label class="file-upload-btn" for="lease-file">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Upload PDF / TXT
+                  <input type="file" id="lease-file" accept=".pdf,.txt" hidden>
+                </label>
+              </div>
+              <div id="file-status" class="file-status hidden"></div>
               <textarea id="lease-text" name="leaseText" rows="10" data-i18n="lease_placeholder" placeholder="Paste the full text of your rental agreement here…"></textarea>
             </div>
             <button type="submit" id="lease-submit-btn" class="btn-primary">
@@ -320,8 +328,73 @@
       </div>
     </div>
 
-    <footer class="site-footer" data-i18n="footer_text">
-      Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025
+    <!-- MODALS -->
+    <div class="modal-overlay" id="modal-about">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-about')">✕</button>
+        <h2 class="modal-title">About Alya</h2>
+        <div class="modal-body">
+          <p>Alya was created as a student project at Bar-Ilan University as part of a Product Management course.</p>
+          <p>Our mission is to make lone soldier benefits accessible and understandable for every IDF lone soldier and new immigrant (oleh), regardless of their background or Hebrew level.</p>
+          <h3>The 3 Tools</h3>
+          <p><strong>Rights & Grants</strong> — Answer 4 quick questions and get a personalized list of benefits you likely qualify for, plus the documents you need to apply.</p>
+          <p><strong>AI Mentor</strong> — A supportive chat for navigating army slang, bureaucracy, and the everyday challenges of lone service. For urgent welfare issues, the mentor will always direct you to your Mashakit Tash or ERAN (1201).</p>
+          <p><strong>Lease Shield</strong> — Paste your rental contract and the AI flags risky clauses and suggests safer wording.</p>
+          <h3>Disclaimer</h3>
+          <p>Alya is an early-stage AI prototype. It does not replace official legal or military advice. Always confirm eligibility and rights with your commanding officer, welfare NCO (Mashakit Tash), or the relevant authority.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-privacy">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-privacy')">✕</button>
+        <h2 class="modal-title">Privacy Policy</h2>
+        <div class="modal-body">
+          <h3>What data we collect</h3>
+          <p>Alya does not store any personal information you enter. Your inputs (profile answers, chat messages, contract text) are sent to OpenAI's API in real time to generate a response, then discarded.</p>
+          <h3>OpenAI</h3>
+          <p>Responses are powered by OpenAI's GPT-4o mini model. Content sent through the API is subject to <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI's Privacy Policy</a>. We do not use your data to train models.</p>
+          <h3>What you should not enter</h3>
+          <p>Do not enter your full military ID number, classified information, or other highly sensitive details. Use the tools for general guidance only.</p>
+          <h3>Cookies & Analytics</h3>
+          <p>Alya does not use cookies or analytics trackers. No personal data is collected about your browsing behavior.</p>
+          <h3>Contact</h3>
+          <p>For privacy questions, email: <a href="mailto:gili.haviv501@gmail.com">gili.haviv501@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-feedback">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-feedback')">✕</button>
+        <h2 class="modal-title">Send Feedback</h2>
+        <div class="modal-body">
+          <p>Found a bug, have a suggestion, or want to share your experience? We'd love to hear from you.</p>
+          <div class="feedback-form">
+            <textarea id="feedback-text" placeholder="Describe the issue or suggestion…" rows="5"></textarea>
+            <button class="btn-primary" onclick="submitFeedback()">
+              <span>Send via Email</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOATING FEEDBACK BUTTON -->
+    <button class="fab" onclick="openModal('modal-feedback')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Feedback
+    </button>
+
+    <footer class="site-footer">
+      <div data-i18n="footer_text">Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025</div>
+      <div class="footer-links">
+        <a href="#" onclick="openModal('modal-about'); return false;">About</a>
+        <a href="#" onclick="openModal('modal-privacy'); return false;">Privacy Policy</a>
+        <a href="#" onclick="openModal('modal-feedback'); return false;">Feedback</a>
+      </div>
     </footer>
 
     <!-- Language Translation Logic -->
@@ -677,7 +750,69 @@
       });
     </script>
 
+    <!-- PDF.js for contract file upload -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
     <script src="app.js"></script>
+
+    <!-- Modal + PDF + Feedback logic -->
+    <script>
+      // ── modals ──────────────────────────────────────────────────────────────
+      function openModal(id) {
+        document.getElementById(id).classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(id) {
+        document.getElementById(id).classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.querySelectorAll('.modal-overlay').forEach(el => {
+        el.addEventListener('click', e => { if (e.target === el) closeModal(el.id); });
+      });
+
+      // ── feedback ────────────────────────────────────────────────────────────
+      function submitFeedback() {
+        const text = document.getElementById('feedback-text').value.trim();
+        if (!text) return;
+        window.location.href = 'mailto:gili.haviv501@gmail.com?subject=Alya Feedback&body=' + encodeURIComponent(text);
+      }
+
+      // ── PDF file upload ─────────────────────────────────────────────────────
+      document.getElementById('lease-file').addEventListener('change', async function () {
+        const file = this.files[0];
+        if (!file) return;
+        const statusEl = document.getElementById('file-status');
+        const textarea = document.getElementById('lease-text');
+        statusEl.className = 'file-status';
+        statusEl.textContent = 'Reading file…';
+
+        try {
+          let text = '';
+          if (file.name.endsWith('.txt')) {
+            text = await file.text();
+          } else if (file.name.endsWith('.pdf')) {
+            if (typeof pdfjsLib === 'undefined') throw new Error('PDF library not loaded');
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            for (let i = 1; i <= pdf.numPages; i++) {
+              const page = await pdf.getPage(i);
+              const content = await page.getTextContent();
+              text += content.items.map(item => item.str).join(' ') + '\n';
+            }
+          } else {
+            throw new Error('Unsupported file type. Use PDF or TXT.');
+          }
+          if (!text.trim()) throw new Error('Could not extract text from this file.');
+          textarea.value = text;
+          statusEl.textContent = `Extracted ${text.length.toLocaleString()} characters from "${file.name}"`;
+        } catch (err) {
+          statusEl.className = 'file-status error';
+          statusEl.textContent = err.message || 'Failed to read file.';
+        }
+      });
+    </script>
+
     <script>
       (function () {
         const img = document.querySelector('.site-logo');
