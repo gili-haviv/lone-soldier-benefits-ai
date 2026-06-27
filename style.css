@@ -39,7 +39,7 @@ body {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #1a1a3e 0%, #2d2b70 40%, #3d1f6e 70%, #1e1b4b 100%);
-  padding: 56px 24px 72px;
+  padding: 28px 24px 36px;
   text-align: center;
 }
 
@@ -58,9 +58,9 @@ body {
   width: 210px;
   max-width: 72vw;
   height: auto;
-  margin: 0 auto 24px;
+  margin: 0 auto 16px;
   display: block;
-  filter: drop-shadow(0 6px 20px rgba(91, 94, 244, 0.45));
+  filter: drop-shadow(0 4px 16px rgba(91, 94, 244, 0.5));
 }
 
 .hero-badge {

@@ -657,5 +657,33 @@
     
     <!-- Your existing scripts -->
     <script src="app.js"></script>
+    <script>
+      (function () {
+        const img = document.querySelector('.site-logo');
+        if (!img) return;
+        function removeBg() {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const px = data.data;
+          // sample the top-left corner pixel as the background color
+          const bgR = px[0], bgG = px[1], bgB = px[2];
+          const tolerance = 60;
+          for (let i = 0; i < px.length; i += 4) {
+            const dr = Math.abs(px[i] - bgR);
+            const dg = Math.abs(px[i+1] - bgG);
+            const db = Math.abs(px[i+2] - bgB);
+            if (dr + dg + db < tolerance * 3) px[i+3] = 0;
+          }
+          ctx.putImageData(data, 0, 0);
+          img.src = canvas.toDataURL('image/png');
+        }
+        if (img.complete && img.naturalWidth) removeBg();
+        else img.addEventListener('load', removeBg);
+      })();
+    </script>
   </body>
 </html>
