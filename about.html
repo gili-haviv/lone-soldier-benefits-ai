@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Alya — Why We Built This</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── About-page-specific styles ── */
+      .about-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 24px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .about-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .about-nav-logo img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+      .about-nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+      .about-nav-cta:hover { background: var(--primary-dark); }
+
+      /* Hero */
+      .about-hero {
+        background: linear-gradient(135deg, #312e81 0%, #4f46e5 50%, #6366f1 100%);
+        color: #fff;
+        padding: 64px 24px 56px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .about-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 26px 26px;
+        pointer-events: none;
+      }
+      .about-hero-eyebrow {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.6);
+        margin-bottom: 16px;
+      }
+      .about-hero h1 {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .about-hero p {
+        font-size: 1.05rem;
+        color: rgba(255,255,255,0.8);
+        max-width: 540px;
+        margin: 0 auto;
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Page wrapper */
+      .about-page { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+      /* Sections */
+      .about-section { padding: 56px 0 0; }
+      .about-section:last-of-type { padding-bottom: 80px; }
+      .about-section-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      .about-section h2 {
+        font-size: 1.55rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 16px;
+        line-height: 1.25;
+      }
+      .about-section p {
+        color: var(--text-2);
+        line-height: 1.75;
+        font-size: 0.97rem;
+        margin-bottom: 14px;
+      }
+
+      /* Stat row */
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin: 28px 0;
+      }
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px 16px;
+        text-align: center;
+      }
+      .stat-card .stat-num {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--primary);
+        line-height: 1;
+      }
+      .stat-card .stat-label {
+        font-size: 0.78rem;
+        color: var(--text-3);
+        margin-top: 6px;
+        line-height: 1.4;
+      }
+
+      /* Pain points */
+      .pain-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pain-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 16px;
+        font-size: 0.92rem;
+        color: var(--text-2);
+        line-height: 1.5;
+      }
+      .pain-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ef4444;
+        flex-shrink: 0;
+        margin-top: 6px;
+      }
+
+      /* Persona card */
+      .persona-card {
+        background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        border: 1px solid #c7d2fe;
+        border-radius: 16px;
+        padding: 28px 24px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+      .persona-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary) 0%, #818cf8 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .persona-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .persona-meta {
+        font-size: 0.82rem;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .persona-bio {
+        font-size: 0.9rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        margin-bottom: 14px;
+      }
+      .persona-quote {
+        font-size: 0.92rem;
+        font-style: italic;
+        color: var(--primary-dark);
+        border-left: 3px solid var(--primary);
+        padding-left: 14px;
+        line-height: 1.55;
+      }
+      .persona-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .persona-tag {
+        font-size: 0.76rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--primary);
+      }
+
+      /* Quote cards (real voices) */
+      .quote-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .quote-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px;
+      }
+      .quote-card-name {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 2px;
+      }
+      .quote-card-meta {
+        font-size: 0.76rem;
+        color: var(--text-3);
+        margin-bottom: 10px;
+      }
+      .quote-card-text {
+        font-size: 0.88rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        font-style: italic;
+      }
+
+      /* Gap section */
+      .gap-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 24px 0;
+      }
+      .gap-col {
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .gap-col.before {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+      }
+      .gap-col.after {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+      }
+      .gap-col-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 12px;
+      }
+      .gap-col.before .gap-col-label { color: #dc2626; }
+      .gap-col.after .gap-col-label { color: #16a34a; }
+      .gap-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .gap-col li {
+        font-size: 0.87rem;
+        color: var(--text-2);
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        line-height: 1.45;
+      }
+      .gap-col.before li::before {
+        content: "✕";
+        color: #dc2626;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 0.8rem;
+        margin-top: 1px;
+      }
+      .gap-col.after li::before {
+        content: "✓";
+        color: #16a34a;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 0.8rem;
+        margin-top: 1px;
+      }
+
+      /* Tool cards */
+      .tool-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .tool-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .tool-card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: #fff;
+      }
+      .tool-card-icon.purple { background: var(--primary); }
+      .tool-card-icon.blue { background: #3b82f6; }
+      .tool-card-icon.green { background: #16a34a; }
+      .tool-card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 5px;
+      }
+      .tool-card-desc {
+        font-size: 0.88rem;
+        color: var(--text-2);
+        line-height: 1.6;
+      }
+
+      /* Team */
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .team-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        text-align: center;
+      }
+      .team-initials {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary) 0%, #818cf8 100%);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+      }
+      .team-name {
+        font-size: 0.83rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+      .team-role {
+        font-size: 0.74rem;
+        color: var(--text-3);
+        line-height: 1.4;
+      }
+
+      /* CTA */
+      .about-cta {
+        background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+        border-radius: 20px;
+        padding: 48px 28px;
+        text-align: center;
+        margin: 56px 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .about-cta::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 24px 24px;
+        pointer-events: none;
+      }
+      .about-cta h2 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .about-cta p {
+        color: rgba(255,255,255,0.75);
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 13px 28px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: transform 0.15s, box-shadow 0.15s;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+
+      /* Divider */
+      .about-divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0;
+      }
+
+      /* Footer */
+      .about-footer {
+        text-align: center;
+        padding: 28px 20px;
+        font-size: 0.82rem;
+        color: var(--text-3);
+        border-top: 1px solid var(--border);
+      }
+      .about-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      @media (max-width: 520px) {
+        .stat-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .stat-card .stat-num { font-size: 1.3rem; }
+        .quote-grid { grid-template-columns: 1fr; }
+        .gap-comparison { grid-template-columns: 1fr; }
+        .persona-card { grid-template-columns: 1fr; }
+        .persona-avatar { width: 52px; height: 52px; font-size: 1.2rem; }
+      }
+    </style>
+  </head>
+  <body style="background: var(--bg);">
+
+    <!-- STICKY NAV -->
+    <nav class="about-nav">
+      <a class="about-nav-logo" href="index.html">
+        <img src="purplelogo.png" alt="Alya" id="nav-logo">
+        Alya
+      </a>
+      <a class="about-nav-cta" href="index.html">
+        Open the App
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-hero-eyebrow">The Story Behind Alya</div>
+      <h1>Built for the soldiers<br>navigating Israel alone</h1>
+      <p>Every year, thousands of young Jews make aliyah and enlist in the IDF without a family support network. We built Alya to be the AI-powered guide they deserve.</p>
+    </section>
+
+    <div class="about-page">
+
+      <!-- THE PROBLEM -->
+      <section class="about-section">
+        <div class="about-section-label">The Problem</div>
+        <h2>The system wasn't designed for people without support</h2>
+        <p>
+          Lone soldiers — young men and women who serve in the IDF without a parent or supporting family member nearby — face a combination of challenges that most soldiers never have to deal with: a language barrier, unfamiliar bureaucracy, housing they must find and pay for themselves, and an emotional isolation that no Facebook group fully fixes.
+        </p>
+        <p>
+          The benefits and rights that Israel offers these soldiers are real and meaningful. But navigating them requires knowing the right office to call, the right Hebrew term to use, and the right document to submit — all without anyone to guide you through.
+        </p>
+
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-num">7,000+</div>
+            <div class="stat-label">Lone soldiers serving in the IDF today</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Languages we support in the app</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">$300M</div>
+            <div class="stat-label">Estimated lone soldier support market</div>
+          </div>
+        </div>
+
+        <ul class="pain-list">
+          <li><span class="pain-dot"></span>Language barrier: military paperwork and welfare offices operate in Hebrew, which many new immigrants don't speak fluently</li>
+          <li><span class="pain-dot"></span>Fragmented information: benefits are spread across multiple organizations, Facebook groups, and office contacts</li>
+          <li><span class="pain-dot"></span>No family guidance: most soldiers have a parent to call — lone soldiers often don't</li>
+          <li><span class="pain-dot"></span>Housing risk: rental contracts in Israel can contain predatory clauses that soldiers don't know to look for</li>
+          <li><span class="pain-dot"></span>Emotional isolation: loneliness during army service is real, and there aren't always formal channels to address it</li>
+        </ul>
+      </section>
+
+      <hr class="about-divider" style="margin-top: 56px;">
+
+      <!-- MEET JULIA -->
+      <section class="about-section">
+        <div class="about-section-label">Our Primary Persona</div>
+        <h2>Meet Julia — the person we designed for</h2>
+        <p>
+          We spent weeks interviewing lone soldiers and new immigrants to understand their real experiences. From that research we built a primary persona who represents the core user Alya is designed to help.
+        </p>
+
+        <div class="persona-card">
+          <div class="persona-avatar">JL</div>
+          <div>
+            <div class="persona-name">Julia Levi, 18</div>
+            <div class="persona-meta">Lone soldier · New immigrant (olah chadasha) · San Francisco → Israel</div>
+            <div class="persona-bio">
+              Julia grew up in California to an Israeli father and American mother. At 18, she decided to make aliyah and enlist in the IDF — a decision driven by identity and pride. But the reality of navigating military bureaucracy, finding housing, and understanding her rights — alone, in a language she barely speaks — is overwhelming.
+            </div>
+            <blockquote class="persona-quote">
+              "Can you explain what you meant? I don't speak the language well yet."
+            </blockquote>
+            <div class="persona-tags">
+              <span class="persona-tag">Language barrier</span>
+              <span class="persona-tag">No family nearby</span>
+              <span class="persona-tag">Needs housing</span>
+              <span class="persona-tag">Wants to belong</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="about-divider" style="margin-top: 56px;">
+
+      <!-- REAL VOICES -->
+      <section class="about-section">
+        <div class="about-section-label">Real Research</div>
+        <h2>We talked to real lone soldiers</h2>
+        <p>
+          Before building anything, we conducted in-depth interviews with lone soldiers and new immigrants from four countries. Their stories shaped every design decision we made.
+        </p>
+
+        <div class="quote-grid">
+          <div class="quote-card">
+            <div class="quote-card-name">Noam</div>
+            <div class="quote-card-meta">New York → Paratroopers (Tzanchanim)</div>
+            <div class="quote-card-text">"Before immigrating I had many concerns about how I would manage without my family and friends, fearing I would be alone and fail to integrate."</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-card-name">Yoel</div>
+            <div class="quote-card-meta">London → Egoz Unit</div>
+            <div class="quote-card-text">"Society around him called him a 'sucker' for a very long time. Ultimately, following many antisemitic incidents, he decided to make aliyah."</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-card-name">Itay</div>
+            <div class="quote-card-meta">Kazakhstan → Sayeret Givati</div>
+            <div class="quote-card-text">"Initially he did not understand Hebrew well and struggled with military terminology, but his Hebrew gradually improved. He found his housing through a personal community connection."</div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-card-name">Jason</div>
+            <div class="quote-card-meta">California → Givati Brigade</div>
+            <div class="quote-card-text">"He had to handle all the bureaucracy and documentation with state authorities on his own — partial help came from an adoptive family he met through his partner."</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="about-divider" style="margin-top: 56px;">
+
+      <!-- THE GAP -->
+      <section class="about-section">
+        <div class="about-section-label">The Market Gap</div>
+        <h2>Existing solutions are fragmented — soldiers fall through the cracks</h2>
+        <p>
+          Lone soldier support in Israel is not absent — it's scattered. Organizations, Facebook groups, immigration agencies, and welfare officers all play a role. But none of them talk to each other, and none of them are accessible in the soldier's language at 11pm when they need help.
+        </p>
+
+        <div class="gap-comparison">
+          <div class="gap-col before">
+            <div class="gap-col-label">Before Alya</div>
+            <ul>
+              <li>Call the right office — if you know it exists</li>
+              <li>Find your rights scattered across Facebook groups</li>
+              <li>Translate your rental contract yourself</li>
+              <li>Ask someone in your unit who might not know either</li>
+              <li>Miss benefits because you didn't know to apply</li>
+            </ul>
+          </div>
+          <div class="gap-col after">
+            <div class="gap-col-label">With Alya</div>
+            <ul>
+              <li>Answer 4 questions, get your benefits list</li>
+              <li>Ask the AI anything — in your language</li>
+              <li>Paste your contract, get a risk analysis in seconds</li>
+              <li>Chat history means you don't repeat yourself</li>
+              <li>Distress support: ERAN 1201 is always one tap away</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="about-divider" style="margin-top: 56px;">
+
+      <!-- THE TOOLS -->
+      <section class="about-section">
+        <div class="about-section-label">What Alya Does</div>
+        <h2>Three AI tools — one place, five languages</h2>
+        <p>
+          Based on our research and the Jobs-to-be-Done framework, we identified three core problems that every lone soldier faces and built a dedicated AI tool for each.
+        </p>
+
+        <div class="tool-cards">
+          <div class="tool-card">
+            <div class="tool-card-icon purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <div class="tool-card-title">Rights &amp; Grants</div>
+              <div class="tool-card-desc">Answer four questions about your status, role, and housing situation. Get a personalized list of benefits you likely qualify for — plus the exact documents you need to apply and what to do next. Available even without an internet connection (offline fallback).</div>
+            </div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <div class="tool-card-title">AI Mentor</div>
+              <div class="tool-card-desc">A conversational AI that speaks your language and remembers your conversation. Ask about army slang (pazam, gibush, mashakit tash), benefits, housing, or just how to navigate a difficult day. If you express distress, the mentor immediately refers you to ERAN (1201) and your welfare NCO — because some things need a human.</div>
+            </div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <div class="tool-card-title">Lease Shield</div>
+              <div class="tool-card-desc">Paste or upload your rental contract (PDF supported). The AI reads every clause and flags what's risky — with a red / yellow / green system and suggested safer wording you can send to your landlord. Built specifically for Israeli rental contracts and lone soldier rights.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="about-divider" style="margin-top: 56px;">
+
+      <!-- THE TEAM -->
+      <section class="about-section">
+        <div class="about-section-label">The Team</div>
+        <h2>Built at Bar-Ilan University</h2>
+        <p>
+          Alya is a student project built for the course <strong>Product Management &amp; Entrepreneurship in the AI Era</strong>, taught by Dr. Neta Granot at Bar-Ilan University. The project spans six assignments — from persona research and interviews to market sizing, user stories, and this working prototype.
+        </p>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-initials">GH</div>
+            <div class="team-name">Gili Haviv</div>
+            <div class="team-role">Rights &amp; Grants · Frontend Lead</div>
+          </div>
+          <div class="team-card">
+            <div class="team-initials">SH</div>
+            <div class="team-name">Shaked Harari</div>
+            <div class="team-role">AI Mentor Feature</div>
+          </div>
+          <div class="team-card">
+            <div class="team-initials">TC</div>
+            <div class="team-name">Tal Cohen</div>
+            <div class="team-role">AI Mentor Feature</div>
+          </div>
+          <div class="team-card">
+            <div class="team-initials">YR</div>
+            <div class="team-name">Yonatan Rahamim</div>
+            <div class="team-role">Lease Shield Feature</div>
+          </div>
+          <div class="team-card">
+            <div class="team-initials">MS</div>
+            <div class="team-name">Matan Slasky</div>
+            <div class="team-role">Lease Shield · i18n</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="about-cta">
+        <h2>Ready to find your benefits?</h2>
+        <p>It takes 60 seconds. No sign-up required. Available in English, Hebrew, Russian, French, and Spanish.</p>
+        <a class="cta-btn" href="index.html">
+          Open Alya
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /about-page -->
+
+    <footer class="about-footer">
+      Built for lone soldiers &nbsp;·&nbsp; Bar-Ilan University, 2025
+      &nbsp;·&nbsp;
+      <a href="index.html">Back to app</a>
+    </footer>
+
+    <!-- Remove purple background from logo -->
+    <script>
+      const img = document.getElementById("nav-logo");
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const bg = { r: d.data[0], g: d.data[1], b: d.data[2] };
+        const tol = 60;
+        for (let i = 0; i < d.data.length; i += 4) {
+          if (Math.abs(d.data[i] - bg.r) + Math.abs(d.data[i+1] - bg.g) + Math.abs(d.data[i+2] - bg.b) < tol * 3) {
+            d.data[i+3] = 0;
+          }
+        }
+        ctx.putImageData(d, 0, 0);
+        img.src = canvas.toDataURL();
+      };
+      if (img.complete) img.onload();
+    </script>
+
+  </body>
+</html>
