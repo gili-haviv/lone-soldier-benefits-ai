@@ -14,12 +14,13 @@
     <!-- HERO -->
     <header class="hero">
       <div class="hero-inner">
-        <!-- Logo -->
         <img class="site-logo" src="purplelogo.png" alt="Alya">
-
+        <h1 class="hero-title">Empowering Lone Soldiers with AI</h1>
         <p data-i18n="hero_desc">Three AI tools built for lone soldiers — know your rights, get support, protect your lease.</p>
         <div class="lang-pill">
-          <span class="lang-icon">🌐</span>
+          <span class="lang-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
           <select id="lang-select">
             <option value="en">English</option>
             <option value="he">עברית</option>
@@ -36,18 +37,23 @@
     <nav class="tab-nav" role="tablist">
       <div class="tab-track">
         <button class="tab active" data-tab="rights" role="tab">
-          <span class="tab-icon">✅</span>
+          <span class="tab-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </span>
           <span data-i18n="tab_rights">Rights &amp; Grants</span>
         </button>
         <button class="tab" data-tab="mentor" role="tab">
-          <span class="tab-icon">💬</span>
+          <span class="tab-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
           <span data-i18n="tab_mentor">Mentor</span>
         </button>
         <button class="tab" data-tab="lease" role="tab">
-          <span class="tab-icon">🏠</span>
+          <span class="tab-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </span>
           <span data-i18n="tab_lease">Lease Shield</span>
         </button>
-        <div class="tab-slider"></div>
       </div>
     </nav>
 
@@ -58,7 +64,9 @@
 
         <section id="form-screen" class="card">
           <div class="card-header">
-            <div class="card-header-icon">🎖️</div>
+            <div class="card-header-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
             <div>
               <h2 class="card-title" data-i18n="rights_title">Check Your Eligibility</h2>
               <p class="card-subtitle" data-i18n="rights_subtitle">Answer 4 quick questions — get your personalized benefits list in seconds.</p>
@@ -91,9 +99,9 @@
                 <div class="select-wrap">
                   <select id="f-serviceType" name="serviceType" required>
                     <option value="" data-i18n="q2_opt_default">Select service type…</option>
-                    <option value="combat" data-i18n="q2_opt_1">⚔️ Combat</option>
-                    <option value="combat_support" data-i18n="q2_opt_2">🛡️ Combat support</option>
-                    <option value="non_combat" data-i18n="q2_opt_3">🔧 Non-combat</option>
+                    <option value="combat" data-i18n="q2_opt_1">Combat</option>
+                    <option value="combat_support" data-i18n="q2_opt_2">Combat support</option>
+                    <option value="non_combat" data-i18n="q2_opt_3">Non-combat</option>
                   </select>
                   <span class="select-arrow">▾</span>
                 </div>
@@ -122,10 +130,10 @@
                 <div class="select-wrap">
                   <select id="f-housing" name="housing" required>
                     <option value="" data-i18n="q4_opt_default">Select housing…</option>
-                    <option value="rent_alone" data-i18n="q4_opt_1">🏠 Renting on my own</option>
-                    <option value="rent_shared" data-i18n="q4_opt_2">🤝 Renting with roommates</option>
-                    <option value="adoptive_family" data-i18n="q4_opt_3">👨‍👩‍👧 Living with adoptive family</option>
-                    <option value="dorm" data-i18n="q4_opt_4">🪖 Army dorm / base housing</option>
+                    <option value="rent_alone" data-i18n="q4_opt_1">Renting on my own</option>
+                    <option value="rent_shared" data-i18n="q4_opt_2">Renting with roommates</option>
+                    <option value="adoptive_family" data-i18n="q4_opt_3">Living with adoptive family</option>
+                    <option value="dorm" data-i18n="q4_opt_4">Army dorm / base housing</option>
                     <option value="other" data-i18n="q4_opt_5">Other</option>
                   </select>
                   <span class="select-arrow">▾</span>
@@ -165,7 +173,9 @@
 
         <!-- error -->
         <section id="error" class="card state-card error-card hidden">
-          <div class="error-icon">⚠️</div>
+          <div class="error-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
           <p class="state-title" id="error-text"></p>
           <button id="retry-btn" class="btn-outline" data-i18n="btn_retry">Try again</button>
         </section>
@@ -178,28 +188,28 @@
           </div>
 
           <div class="section-block">
-            <h3 class="section-title"><span class="section-icon">✅</span> <span data-i18n="res_benefits">Benefits you likely qualify for</span></h3>
+            <h3 class="section-title" data-i18n="res_benefits">Benefits you likely qualify for</h3>
             <ul id="benefits-list" class="benefits-list"></ul>
           </div>
 
           <div class="docs-row">
             <div class="docs-col">
-              <h3 class="section-title"><span class="section-icon">📄</span> <span data-i18n="res_docs">Documents to prepare</span></h3>
+              <h3 class="section-title" data-i18n="res_docs">Documents to prepare</h3>
               <ul id="documents-list" class="doc-chips"></ul>
             </div>
             <div class="docs-col">
-              <h3 class="section-title"><span class="section-icon">❗</span> <span data-i18n="res_missing">Missing documents</span></h3>
+              <h3 class="section-title" data-i18n="res_missing">Missing documents</h3>
               <ul id="missing-list" class="doc-chips missing"></ul>
             </div>
           </div>
 
           <div class="section-block">
-            <h3 class="section-title"><span class="section-icon">📝</span> <span data-i18n="res_process">How the process works</span></h3>
+            <h3 class="section-title" data-i18n="res_process">How the process works</h3>
             <p id="process-text" class="process-text"></p>
           </div>
 
           <div class="next-step-block">
-            <div class="next-step-label" data-i18n="res_next">👉 Your next step</div>
+            <div class="next-step-label" data-i18n="res_next">Your next step</div>
             <p id="next-step"></p>
           </div>
 
@@ -213,7 +223,9 @@
       <div id="tab-mentor" class="tab-panel hidden">
         <section class="card chat-card">
           <div class="card-header">
-            <div class="card-header-icon ai-avatar">🤖</div>
+            <div class="card-header-icon blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
             <div>
               <h2 class="card-title" data-i18n="mentor_title">AI Mentor</h2>
               <p class="card-subtitle" data-i18n="mentor_sub">Ask about slang, bureaucracy, or anything on your mind. I'm here for you.</p>
@@ -222,7 +234,9 @@
 
           <div id="chat-messages" class="chat-messages">
             <div class="msg msg-assistant intro-msg">
-              <div class="msg-avatar">🤖</div>
+              <div class="msg-avatar">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
               <div class="msg-bubble" data-i18n="mentor_intro">Hey! I'm your lone-soldier mentor. Ask me anything — army slang, rights, how to handle a tough week, or what to do next. What's on your mind?</div>
             </div>
           </div>
@@ -230,7 +244,7 @@
           <form id="chat-form" class="chat-form">
             <input type="text" id="chat-input" data-i18n="mentor_placeholder" placeholder="Type your question…" autocomplete="off" required />
             <button type="submit" class="chat-send-btn" aria-label="Send">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
           </form>
         </section>
@@ -241,7 +255,9 @@
 
         <section id="lease-form-section" class="card">
           <div class="card-header">
-            <div class="card-header-icon">📋</div>
+            <div class="card-header-icon green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
             <div>
               <h2 class="card-title" data-i18n="lease_title">Lease Shield</h2>
               <p class="card-subtitle" data-i18n="lease_sub">Paste your rental contract — the AI will flag dangerous clauses and suggest safer wording.</p>
@@ -249,9 +265,9 @@
           </div>
 
           <div class="risk-legend">
-            <span class="risk-chip red" data-i18n="risk_danger">🔴 Dangerous</span>
-            <span class="risk-chip yellow" data-i18n="risk_risky">🟡 Risky</span>
-            <span class="risk-chip green" data-i18n="risk_standard">🟢 Standard</span>
+            <span class="risk-chip red" data-i18n="risk_danger">Dangerous</span>
+            <span class="risk-chip yellow" data-i18n="risk_risky">Risky</span>
+            <span class="risk-chip green" data-i18n="risk_standard">Standard</span>
           </div>
 
           <form id="lease-form">
@@ -274,7 +290,9 @@
         </section>
 
         <section id="lease-error" class="card state-card error-card hidden">
-          <div class="error-icon">⚠️</div>
+          <div class="error-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
           <p class="state-title" id="lease-error-text"></p>
           <button id="lease-retry-btn" class="btn-outline" data-i18n="btn_retry">Try again</button>
         </section>
@@ -291,6 +309,16 @@
 
       </div>
     </main>
+
+    <!-- TRUST STRIP -->
+    <div class="trust-strip">
+      <div class="trust-strip-inner">
+        <span class="trust-strip-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </span>
+        <p class="trust-strip-text"><strong>Disclaimer:</strong> Alya provides AI-generated information for guidance only. It does not replace professional legal or military advice. Always verify benefits and rights with your commanding officer, welfare officer (mashakit tash), or the relevant authority.</p>
+      </div>
+    </div>
 
     <footer class="site-footer" data-i18n="footer_text">
       Built for lone soldiers &nbsp;·&nbsp; AI-Powered Mini MVP &nbsp;·&nbsp; 2025
@@ -314,9 +342,9 @@
           q1_opt_4: "No",
           q2_label: "Service type",
           q2_opt_default: "Select service type…",
-          q2_opt_1: "⚔️ Combat",
-          q2_opt_2: "🛡️ Combat support",
-          q2_opt_3: "🔧 Non-combat",
+          q2_opt_1: "Combat",
+          q2_opt_2: "Combat support",
+          q2_opt_3: "Non-combat",
           q3_label: "How long have you been serving?",
           q3_opt_default: "Select duration…",
           q3_opt_1: "Less than 6 months",
@@ -325,10 +353,10 @@
           q3_opt_4: "Recently released",
           q4_label: "Housing situation",
           q4_opt_default: "Select housing…",
-          q4_opt_1: "🏠 Renting on my own",
-          q4_opt_2: "🤝 Renting with roommates",
-          q4_opt_3: "👨‍👩‍👧 Living with adoptive family",
-          q4_opt_4: "🪖 Army dorm / base housing",
+          q4_opt_1: "Renting on my own",
+          q4_opt_2: "Renting with roommates",
+          q4_opt_3: "Living with adoptive family",
+          q4_opt_4: "Army dorm / base housing",
           q4_opt_5: "Other",
           q5_label: "Unit / base",
           optional: "optional",
@@ -343,7 +371,7 @@
           res_docs: "Documents to prepare",
           res_missing: "Missing documents",
           res_process: "How the process works",
-          res_next: "👉 Your next step",
+          res_next: "Your next step",
           res_disclaimer: "This is an automated estimate, not an official ruling. Always confirm with the relevant authority.",
           btn_restart: "← Start over",
           mentor_title: "AI Mentor",
@@ -352,9 +380,9 @@
           mentor_placeholder: "Type your question…",
           lease_title: "Lease Shield",
           lease_sub: "Paste your rental contract — the AI will flag dangerous clauses and suggest safer wording.",
-          risk_danger: "🔴 Dangerous",
-          risk_risky: "🟡 Risky",
-          risk_standard: "🟢 Standard",
+          risk_danger: "Dangerous",
+          risk_risky: "Risky",
+          risk_standard: "Standard",
           lease_label: "Rental contract text",
           lease_placeholder: "Paste the full text of your rental agreement here…",
           btn_analyze: "Analyze my contract",
@@ -379,9 +407,9 @@
           q1_opt_4: "לא",
           q2_label: "סוג שירות",
           q2_opt_default: "בחר סוג שירות…",
-          q2_opt_1: "⚔️ קרבי",
-          q2_opt_2: "🛡️ תומך לחימה",
-          q2_opt_3: "🔧 עורפי",
+          q2_opt_1: "קרבי",
+          q2_opt_2: "תומך לחימה",
+          q2_opt_3: "עורפי",
           q3_label: "כמה זמן אתה משרת?",
           q3_opt_default: "בחר משך שירות…",
           q3_opt_1: "פחות מ-6 חודשים",
@@ -390,10 +418,10 @@
           q3_opt_4: "משוחרר טרי",
           q4_label: "מצב מגורים",
           q4_opt_default: "בחר סוג מגורים…",
-          q4_opt_1: "🏠 שוכר דירה לבד",
-          q4_opt_2: "🤝 שוכר דירה עם שותפים",
-          q4_opt_3: "👨‍👩‍👧 מתגורר עם משפחה מאמצת",
-          q4_opt_4: "🪖 בית החייל / מגורים בבסיס",
+          q4_opt_1: "שוכר דירה לבד",
+          q4_opt_2: "שוכר דירה עם שותפים",
+          q4_opt_3: "מתגורר עם משפחה מאמצת",
+          q4_opt_4: "בית החייל / מגורים בבסיס",
           q4_opt_5: "אחר",
           q5_label: "יחידה / בסיס",
           optional: "אופציונלי",
@@ -408,7 +436,7 @@
           res_docs: "מסמכים להכנה",
           res_missing: "מסמכים חסרים",
           res_process: "איך התהליך עובד",
-          res_next: "👉 הצעד הבא שלך",
+          res_next: "הצעד הבא שלך",
           res_disclaimer: "זוהי הערכה אוטומטית, לא החלטה רשמית. ודא תמיד מול הגורם הרלוונטי.",
           btn_restart: "← התחל מחדש",
           mentor_title: "מנטור אישי",
@@ -417,9 +445,9 @@
           mentor_placeholder: "הקלד את שאלתך…",
           lease_title: "הגנת חוזה שכירות",
           lease_sub: "הדבק את חוזה השכירות שלך — המערכת תסמן סעיפים מסוכנים ותציע ניסוח בטוח יותר.",
-          risk_danger: "🔴 מסוכן",
-          risk_risky: "🟡 בעייתי",
-          risk_standard: "🟢 סטנדרטי",
+          risk_danger: "מסוכן",
+          risk_risky: "בעייתי",
+          risk_standard: "סטנדרטי",
           lease_label: "טקסט חוזה השכירות",
           lease_placeholder: "הדבק את הטקסט המלא של חוזה השכירות שלך כאן…",
           btn_analyze: "נתח את החוזה שלי",
@@ -444,9 +472,9 @@
           q1_opt_4: "Нет",
           q2_label: "Тип службы",
           q2_opt_default: "Выберите тип службы…",
-          q2_opt_1: "⚔️ Боевые войска",
-          q2_opt_2: "🛡️ Поддержка боевых войск",
-          q2_opt_3: "🔧 Тыловые войска",
+          q2_opt_1: "Боевые войска",
+          q2_opt_2: "Поддержка боевых войск",
+          q2_opt_3: "Тыловые войска",
           q3_label: "Как долго вы служите?",
           q3_opt_default: "Выберите срок…",
           q3_opt_1: "Менее 6 месяцев",
@@ -455,10 +483,10 @@
           q3_opt_4: "Недавно демобилизован",
           q4_label: "Условия проживания",
           q4_opt_default: "Выберите условия…",
-          q4_opt_1: "🏠 Арендую один",
-          q4_opt_2: "🤝 Арендую с соседями",
-          q4_opt_3: "👨‍👩‍👧 Живу с приемной семьей",
-          q4_opt_4: "🪖 Армейское общежитие / база",
+          q4_opt_1: "Арендую один",
+          q4_opt_2: "Арендую с соседями",
+          q4_opt_3: "Живу с приемной семьей",
+          q4_opt_4: "Армейское общежитие / база",
           q4_opt_5: "Другое",
           q5_label: "Подразделение / база",
           optional: "необязательно",
@@ -473,7 +501,7 @@
           res_docs: "Документы для подготовки",
           res_missing: "Недостающие документы",
           res_process: "Как работает этот процесс",
-          res_next: "👉 Ваш следующий шаг",
+          res_next: "Ваш следующий шаг",
           res_disclaimer: "Это автоматическая оценка, а не официальное решение. Всегда проверяйте информацию в соответствующих инстанциях.",
           btn_restart: "← Начать сначала",
           mentor_title: "ИИ-наставник",
@@ -482,9 +510,9 @@
           mentor_placeholder: "Введите ваш вопрос…",
           lease_title: "Защита аренды",
           lease_sub: "Вставьте ваш договор аренды — ИИ отметит опасные пункты и предложит более безопасные формулировки.",
-          risk_danger: "🔴 Опасно",
-          risk_risky: "🟡 Рискованно",
-          risk_standard: "🟢 Стандартно",
+          risk_danger: "Опасно",
+          risk_risky: "Рискованно",
+          risk_standard: "Стандартно",
           lease_label: "Текст договора аренды",
           lease_placeholder: "Вставьте полный текст вашего договора аренды здесь…",
           btn_analyze: "Проанализировать договор",
@@ -509,9 +537,9 @@
           q1_opt_4: "Non",
           q2_label: "Type de service",
           q2_opt_default: "Sélectionnez le type de service…",
-          q2_opt_1: "⚔️ Combattant",
-          q2_opt_2: "🛡️ Soutien au combat",
-          q2_opt_3: "🔧 Non-combattant",
+          q2_opt_1: "Combattant",
+          q2_opt_2: "Soutien au combat",
+          q2_opt_3: "Non-combattant",
           q3_label: "Depuis combien de temps servez-vous ?",
           q3_opt_default: "Sélectionnez la durée…",
           q3_opt_1: "Moins de 6 mois",
@@ -520,10 +548,10 @@
           q3_opt_4: "Récemment libéré",
           q4_label: "Situation de logement",
           q4_opt_default: "Sélectionnez le logement…",
-          q4_opt_1: "🏠 Je loue seul",
-          q4_opt_2: "🤝 Je loue avec des colocataires",
-          q4_opt_3: "👨‍👩‍👧 Je vis avec une famille adoptive",
-          q4_opt_4: "🪖 Dortoir de l'armée / logement sur base",
+          q4_opt_1: "Je loue seul",
+          q4_opt_2: "Je loue avec des colocataires",
+          q4_opt_3: "Je vis avec une famille adoptive",
+          q4_opt_4: "Dortoir de l'armée / logement sur base",
           q4_opt_5: "Autre",
           q5_label: "Unité / base",
           optional: "facultatif",
@@ -538,7 +566,7 @@
           res_docs: "Documents à préparer",
           res_missing: "Documents manquants",
           res_process: "Comment fonctionne le processus",
-          res_next: "👉 Votre prochaine étape",
+          res_next: "Votre prochaine étape",
           res_disclaimer: "Il s'agit d'une estimation automatisée, pas d'une décision officielle. Confirmez toujours avec l'autorité compétente.",
           btn_restart: "← Recommencer",
           mentor_title: "Mentor IA",
@@ -547,9 +575,9 @@
           mentor_placeholder: "Tapez votre question…",
           lease_title: "Bouclier Bail",
           lease_sub: "Collez votre contrat de location — l'IA signalera les clauses dangereuses et suggérera une formulation plus sûre.",
-          risk_danger: "🔴 Dangereux",
-          risk_risky: "🟡 Risqué",
-          risk_standard: "🟢 Standard",
+          risk_danger: "Dangereux",
+          risk_risky: "Risqué",
+          risk_standard: "Standard",
           lease_label: "Texte du contrat de location",
           lease_placeholder: "Collez le texte complet de votre contrat de location ici…",
           btn_analyze: "Analyser mon contrat",
@@ -574,9 +602,9 @@
           q1_opt_4: "No",
           q2_label: "Tipo de servicio",
           q2_opt_default: "Selecciona el tipo de servicio…",
-          q2_opt_1: "⚔️ Combate",
-          q2_opt_2: "🛡️ Apoyo de combate",
-          q2_opt_3: "🔧 No combate",
+          q2_opt_1: "Combate",
+          q2_opt_2: "Apoyo de combate",
+          q2_opt_3: "No combate",
           q3_label: "¿Cuánto tiempo llevas sirviendo?",
           q3_opt_default: "Selecciona la duración…",
           q3_opt_1: "Menos de 6 meses",
@@ -585,10 +613,10 @@
           q3_opt_4: "Recientemente liberado",
           q4_label: "Situación de vivienda",
           q4_opt_default: "Selecciona tu vivienda…",
-          q4_opt_1: "🏠 Alquilo solo",
-          q4_opt_2: "🤝 Alquilo con compañeros",
-          q4_opt_3: "👨‍👩‍👧 Vivo con familia adoptiva",
-          q4_opt_4: "🪖 Dormitorio del ejército / base",
+          q4_opt_1: "Alquilo solo",
+          q4_opt_2: "Alquilo con compañeros",
+          q4_opt_3: "Vivo con familia adoptiva",
+          q4_opt_4: "Dormitorio del ejército / base",
           q4_opt_5: "Otro",
           q5_label: "Unidad / base",
           optional: "opcional",
@@ -603,7 +631,7 @@
           res_docs: "Documentos para preparar",
           res_missing: "Documentos faltantes",
           res_process: "Cómo funciona el proceso",
-          res_next: "👉 Tu próximo paso",
+          res_next: "Tu próximo paso",
           res_disclaimer: "Esta es una estimación automatizada, no un fallo oficial. Siempre confirma con la autoridad pertinente.",
           btn_restart: "← Empezar de nuevo",
           mentor_title: "Mentor de IA",
@@ -612,9 +640,9 @@
           mentor_placeholder: "Escribe tu pregunta…",
           lease_title: "Escudo de Alquiler",
           lease_sub: "Pega tu contrato de alquiler: la IA señalará las cláusulas peligrosas y sugerirá una redacción más segura.",
-          risk_danger: "🔴 Peligroso",
-          risk_risky: "🟡 Riesgoso",
-          risk_standard: "🟢 Estándar",
+          risk_danger: "Peligroso",
+          risk_risky: "Riesgoso",
+          risk_standard: "Estándar",
           lease_label: "Texto del contrato de alquiler",
           lease_placeholder: "Pega el texto completo de tu contrato de alquiler aquí…",
           btn_analyze: "Analizar mi contrato",
@@ -629,17 +657,13 @@
       function setLanguage(lang) {
         document.documentElement.lang = lang;
         document.documentElement.dir = (lang === 'he') ? 'rtl' : 'ltr';
-
-        const elementsToTranslate = document.querySelectorAll('[data-i18n]');
-        
-        elementsToTranslate.forEach(element => {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
           const key = element.getAttribute('data-i18n');
-          
           if (translations[lang] && translations[lang][key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
               element.placeholder = translations[lang][key];
             } else {
-              element.innerHTML = translations[lang][key]; 
+              element.innerHTML = translations[lang][key];
             }
           }
         });
@@ -648,14 +672,11 @@
       document.addEventListener("DOMContentLoaded", () => {
         const langSelect = document.getElementById('lang-select');
         if (langSelect) {
-          langSelect.addEventListener('change', (e) => {
-            setLanguage(e.target.value);
-          });
+          langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
         }
       });
     </script>
-    
-    <!-- Your existing scripts -->
+
     <script src="app.js"></script>
     <script>
       (function () {
@@ -669,14 +690,10 @@
           ctx.drawImage(img, 0, 0);
           const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const px = data.data;
-          // sample the top-left corner pixel as the background color
           const bgR = px[0], bgG = px[1], bgB = px[2];
           const tolerance = 60;
           for (let i = 0; i < px.length; i += 4) {
-            const dr = Math.abs(px[i] - bgR);
-            const dg = Math.abs(px[i+1] - bgG);
-            const db = Math.abs(px[i+2] - bgB);
-            if (dr + dg + db < tolerance * 3) px[i+3] = 0;
+            if (Math.abs(px[i]-bgR) + Math.abs(px[i+1]-bgG) + Math.abs(px[i+2]-bgB) < tolerance * 3) px[i+3] = 0;
           }
           ctx.putImageData(data, 0, 0);
           img.src = canvas.toDataURL('image/png');
